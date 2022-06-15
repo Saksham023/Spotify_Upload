@@ -6,7 +6,6 @@ const token = tok.innerHTML;
 let colors = ['red', 'dark-violet', 'violet', 'yellow', 'orange', 'gray'];
 let idx = -1;
 
-
 $('.topdiv').on('mouseenter', function(){
     $(this).addClass('top-ani');
     $(this).removeClass('top-ani-leave');
@@ -31,6 +30,7 @@ $('.topdiv').on('mouseleave', function(){
     $(`#background_${colors[idx]}`).addClass(`ani-${colors[idx]}-exit`)
 })
 
+
 $('.topicon').on('mouseenter', function(){
     $(this).css('transform', 'scale(1.08)');
 })
@@ -48,6 +48,9 @@ $('.cardicon').on('mouseleave', function(){
 // if($('#artists #card1 .card-img-top').attr('src')===''){
 //     $('#artists #card1 .card-img-top').css('width', '0px');
 // }
+
+
+let uriarr = JSON.parse(localStorage.getItem('uriArray'));
 
 $.ajax({
     url: 'https://api.spotify.com/v1/recommendations?seed_artists=6LEG9Ld1aLImEFEVHdWNSB&seed_artists=4PULA4EFzYTrxYvOVlwpiQ&seed_tracks=5W7DOVGQLTigu09afW7QMT&seed_tracks=7AW4g4I9fPfUIyqtbsuAkM&limit=6',
@@ -70,14 +73,18 @@ $.ajax({
             })
             num++;
         }
+        // console.log(response.tracks[0].uri);
+        let arr = [];
         num = 0;
         for(let head of $('.topdiv h5')){
             head.innerText = response.tracks[num].name;
+            arr.push(response.tracks[num].uri);
             num++;
         }
+        localStorage.setItem('uriArray', JSON.stringify(arr));
+        uriarr = JSON.parse(localStorage.getItem('uriArray'));
     }
 });
-
 
 
 $.ajax({
@@ -109,3 +116,9 @@ $.ajax({
         }
     }
 });
+
+
+$('.topicon').on('click', function(){
+    let iidx = parseInt($(this).attr('id'));
+    play(uriarr[iidx]);
+})
