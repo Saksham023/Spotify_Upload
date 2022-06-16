@@ -40,6 +40,24 @@ $('.cardicon').on('mouseleave', function(){
     $(this).css('transform', 'scale(1)');
 })
 
+
+$('#play_btn').on('mouseenter', function(){
+    $(this).css('transform', 'scale(1.08)');
+    $('#pause_btn').css('transform', 'scale(1.08)');
+    
+    $(this).css('box-shadow', '0px 6px 20px 0.1px rgb(79, 74, 74)');
+    $('#pause_btn').css('box-shadow', '0px 6px 20px 0.1px rgb(79, 74, 74)');
+    // box-shadow: 0px 6px 20px 0.02px rgb(41, 37, 37);
+
+})
+$('#play_btn').on('mouseleave', function(){
+    $(this).css('transform', 'scale(1)');
+    $('#pause_btn').css('transform', 'scale(1)');
+
+    $(this).css('box-shadow', '');
+    $('#pause_btn').css('box-shadow', '');
+})
+
 // console.log($('#artists #card1 .card-img-top').attr('src'));
 // if($('#artists #card1 .card-img-top').attr('src')===''){
 //     $('#artists #card1 .card-img-top').css('width', '0px');

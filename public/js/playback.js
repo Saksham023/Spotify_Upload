@@ -3,6 +3,8 @@
 const tokabcd = document.querySelector('#token');
 const tokenabcd = tokabcd.innerHTML.trim();
 
+let footer_visi = false;
+
 let dat;
 
 window.onSpotifyWebPlaybackSDKReady = () => {
@@ -17,18 +19,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     player.addListener('ready', (data) => {
       console.log('Ready with Device ID', data);
       dat = data.device_id;
-      player.getCurrentState().then(state => {
-        if (!state) {
-          console.error('User is not playing music through the Web Playback SDK');
-          return;
-        }
-      
-        var current_track = state.track_window.current_track;
-        var next_track = state.track_window.next_tracks[0];
-      
-        console.log('Currently Playing', current_track);
-        console.log('Playing Next', next_track);
-      });
     });
 
     // Not Ready
@@ -94,9 +84,28 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         data: `{"uris": ["${uri}"]}`,
         success: function(response) {
             // console.log(response);
-            setTimeout(fu, 3500);
+            let idd = (uri.split(':')[2]);
+            // setTimeout(fu, 3500);
             $('#play_btn').addClass('play-exit');
             $('#pause_btn').addClass('pause-enter');
+            $('#pause_btn').removeClass('pause-exit');
+            $('#play_btn').removeClass('play-enter');
+
+            $('.footer').addClass('foot_en');
+
+            $.ajax({
+              url: "https://api.spotify.com/v1/tracks/" + idd,
+              type: "GET",
+              headers: {
+                  'Authorization': 'Bearer ' + token,
+                  'Content-Type': 'application/json'
+              },
+              success: function(response) {
+                  console.log(response.album.images[0].url);
+                  $('#curr_song_img').attr('src', response.album.images[0].url);
+                  // console.log('chal gaya')
+              }
+        });
             // fu();
         }
   });

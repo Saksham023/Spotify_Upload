@@ -487,7 +487,7 @@ h5{
 footer{
     border-top: 0.05px solid rgb(84, 84, 84);
     position: fixed;
-    bottom: 0px;
+    bottom: -90px;
     height: 90px;
     width: 100%;
     box-sizing: border-box;
@@ -495,10 +495,25 @@ footer{
     background-color: rgb(24,24,24,255);
 }
 
+@keyframes footer_en {
+    0%{
+        bottom: -90px;
+        opacity: 0;
+    }
+    100%{
+        bottom: 0px;
+        opacity: 1;
+    }
+}
+
+.foot_en{
+    animation: footer_en 0.5s ease-out 0ms 1 forwards running;
+}
+
 .playcontrols{
     width: 40px;
     height: 40px;
-    margin: 15px auto;
+    margin: 12px auto;
     position: relative;
 }
 
@@ -507,12 +522,15 @@ footer{
     width: 100%;
     position: absolute;
     top: 0px;
+    border-radius: 50%;
 }
 #pause_btn{
     height: 100%;
     width: 100%;
     position: absolute;
     top: 0px;
+    border-radius: 50%;
+    /* box-shadow: 0px 6px 20px 0.1px rgb(79, 74, 74); */
 }
 
 @keyframes ani_btn_ex {
@@ -552,6 +570,19 @@ footer{
     left: 20px;
     top: 15px;
 }
+
+.curr_song_name{
+    position: relative;
+    left: 95px;
+    top: 27px;
+    display: inline-block;
+}
+
+#song_name{
+    font-size: 1.1rem;
+    color: white;
+}
+
 
 
 
