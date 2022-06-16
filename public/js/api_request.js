@@ -5,11 +5,14 @@ const token = tok.innerHTML.trim();
 
 let uriarr = JSON.parse(localStorage.getItem('uriArray'));
 
+
 $.ajax({
     url: 'https://api.spotify.com/v1/recommendations?seed_artists=6LEG9Ld1aLImEFEVHdWNSB&seed_artists=4PULA4EFzYTrxYvOVlwpiQ&seed_tracks=5W7DOVGQLTigu09afW7QMT&seed_tracks=7AW4g4I9fPfUIyqtbsuAkM&limit=6',
     headers: {
-      'Authorization': 'Bearer ' + token
+      'Authorization': 'Bearer ' + token,
+      'Content-Type': 'application/json'
     },
+
     success: function(response) {
         let num = 0;
         for(let img of $('.topdiv .topimg')){
@@ -43,7 +46,8 @@ $.ajax({
 $.ajax({
     url: 'https://api.spotify.com/v1/me/top/artists',
     headers: {
-      'Authorization': 'Bearer ' + token
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
     },
     success: function(response) {
         // console.log(response);
@@ -69,9 +73,3 @@ $.ajax({
         }
     }
 });
-
-
-$('.topicon').on('click', function(){
-    let iidx = parseInt($(this).attr('id'));
-    play(uriarr[iidx]);
-})
