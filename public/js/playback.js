@@ -1,8 +1,7 @@
 
 
 const tokabcd = document.querySelector('#token');
-const tokenabc = tokabcd.innerHTML;
-const tokenabcd = tokenabc.trim();
+const tokenabcd = tokabcd.innerHTML.trim();
 
 let dat;
 
@@ -10,7 +9,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(tokenabcd); },
-        volume: 0.5
+        volume: 1
     });
     console.log('abcd');
 
