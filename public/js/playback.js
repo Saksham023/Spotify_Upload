@@ -101,15 +101,62 @@ window.onSpotifyWebPlaybackSDKReady = () => {
                   'Content-Type': 'application/json'
               },
               success: function(response) {
-                  console.log(response.album.images[0].url);
+                  // console.log(response.artists);
                   $('#curr_song_img').attr('src', response.album.images[0].url);
-                  // console.log('chal gaya')
+                  $('#song_name').text(response.name);
+
+                  let arr = [];
+                  for(let obj of response.artists){
+                    // console.log(obj.name);
+                    arr.push(obj.name);
+                  }
+
+                  let str = arr.join(', ');
+                   $('#singer_name').text(str);
               }
-        });
-            // fu();
+            });
+
+
+            $.ajax({
+              url: 'https://api.spotify.com/v1/recommendations?seed_tracks='+idd,
+              headers: {
+                'Authorization': 'Bearer ' + token,
+                'Content-Type': 'application/json'
+              },
+          
+              success: function(response) {
+                
+                for(let i=0; i<5; i++){
+                  console.log(response.tracks[i].uri);
+                  let temp_uri = response.tracks[i].uri;
+
+                  qu(temp_uri);
+                  
+                }
+              }
+          });
         }
   });
   }
+
+
+
+  function qu(temp_uri){
+    $.ajax({
+      url: "https://api.spotify.com/v1/me/player/queue?uri=spotify:track:1rpcv0mH99iPuUUn3NvNDe",
+      type: "POST",
+      headers: {
+          'Authorization': 'Bearer ' + token,
+          'Content-Type': 'application/json'
+      },
+      success: function(response) {
+          console.log(response);
+          // console.log('chal gaya')
+      }
+    });
+  }
+
+
 
   function pause() {
     $.ajax({

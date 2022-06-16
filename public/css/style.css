@@ -513,7 +513,7 @@ footer{
 .playcontrols{
     width: 40px;
     height: 40px;
-    margin: 12px auto;
+    margin: -25px auto;
     position: relative;
 }
 
@@ -576,6 +576,7 @@ footer{
     left: 95px;
     top: 27px;
     display: inline-block;
+    width: 17%;
 }
 
 #song_name{
@@ -583,7 +584,11 @@ footer{
     color: white;
 }
 
-
+#singer_name{
+    font-size: 0.7rem;
+    color: 	rgb(136,136,136);
+    margin-top: 2px;
+}
 
 
 /* _____________________________________________________________________________aside css_______________________________________________________________________________ */
