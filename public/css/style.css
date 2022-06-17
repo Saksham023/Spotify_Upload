@@ -265,7 +265,19 @@ h5{
     #background_red{
         height: 300px;
     }
-    #background_green{
+    #background_dark-violet{
+        height: 300px;
+    }
+    #background_violet{
+        height: 300px;
+    }
+    #background_yellow{
+        height: 300px;
+    }
+    #background_gray{
+        height: 300px;
+    }
+    #background_orange{
         height: 300px;
     }
 }
@@ -306,13 +318,37 @@ h5{
         display: none;
     }
 
-    #background_green{
+    #background_red{
         /* border: 2px solid white; */
         margin-left: 0;
         width: 100%;
         height: 230px;
     }
-    #background_red{
+    #background_dark-violet{
+        /* border: 2px solid white; */
+        margin-left: 0;
+        width: 100%;
+        height: 230px;
+    }
+    #background_violet{
+        /* border: 2px solid white; */
+        margin-left: 0;
+        width: 100%;
+        height: 230px;
+    }
+    #background_yellow{
+        /* border: 2px solid white; */
+        margin-left: 0;
+        width: 100%;
+        height: 230px;
+    }
+    #background_gray{
+        /* border: 2px solid white; */
+        margin-left: 0;
+        width: 100%;
+        height: 230px;
+    }
+    #background_orange{
         /* border: 2px solid white; */
         margin-left: 0;
         width: 100%;
@@ -431,7 +467,7 @@ h5{
     overflow: hidden;
 }
 
-@media screen and (max-width: 1450px){
+@media screen and (max-width: 1500px){
     #card6{
         display: none;
     }
@@ -443,13 +479,13 @@ h5{
     }
 }
 
-@media screen and (max-width: 1260px){
+@media screen and (max-width: 1290px){
     #card5{
         display: none;
     }
 }
 
-@media screen and (max-width: 1040px){
+@media screen and (max-width: 1085px){
     #card4{
         display: none;
     }
