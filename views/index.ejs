@@ -13,6 +13,7 @@
         rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
         <script src="/js/jQuery.js"></script>
+        <script src="//naver.github.io/egjs-jquery-pauseresume/release/latest/dist/pauseresume.js"></script>
     <title>Document</title>
 </head>
 
@@ -314,14 +315,26 @@
 
         <div class="playcontrols">
             <img src="/pause.png" alt="" id="pause_btn">
-            <img src="/play.png" alt="" id="play_btn"> 
+            <img src="/play.png" alt="" id="play_btn">
+            <img src="/next.png" alt="" id="next_btn">
+            <img src="/prev.png" alt="" id="prev_btn">
+
+            <p id="start_time"><span id="minutes">00</span>:<span id="seconds">00</span></p>
+            <div id="for_hover">
+                <div id="full_prog_bar">
+                    <div id="prog_bar"></div>
+                </div>
+            </div>
+            <p id="end_time">0:00</p>
         </div>
     </footer>
+
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
     <script src="/js/playback.js"></script>
     <script src="/js/index.js"></script>
     <script src="/js/api_request.js"></script>
+    <script src="/js/timer.js"></script>
 </body>
 
 </html>

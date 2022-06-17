@@ -58,6 +58,28 @@ $('#play_btn').on('mouseleave', function(){
     $('#pause_btn').css('box-shadow', '');
 })
 
+
+
+$('#next_btn').on('mouseenter', function(){
+    $(this).css('transform', 'scale(1.08)');
+    $(this).css('box-shadow', '0px 6px 20px 0.1px rgb(79, 74, 74)');
+
+})
+$('#next_btn').on('mouseleave', function(){
+    $(this).css('transform', 'scale(1)');
+    $(this).css('box-shadow', '');
+})
+
+$('#prev_btn').on('mouseenter', function(){
+    $(this).css('transform', 'scale(1.08)');
+    $(this).css('box-shadow', '0px 6px 20px 0.1px rgb(79, 74, 74)');
+
+})
+$('#prev_btn').on('mouseleave', function(){
+    $(this).css('transform', 'scale(1)');
+    $(this).css('box-shadow', '');
+})
+
 // console.log($('#artists #card1 .card-img-top').attr('src'));
 // if($('#artists #card1 .card-img-top').attr('src')===''){
 //     $('#artists #card1 .card-img-top').css('width', '0px');
