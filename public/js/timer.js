@@ -56,10 +56,15 @@ $('#for_hover').on('click', function(e){
     let left_dur = song_dur - seek_to_dur;
     seek_to_dur = parseInt(seek_to_dur);
 
-    $('#prog_bar').stop(true).css({width: e.offsetX});
-    $('#prog_bar').animate({ width: '100%' }, left_dur, 'linear', function(){
-        $('#prog_bar').css('width', '0');
+    // $('#prog_bar').stop(true).css({width: e.offsetX});
+    $('#prog_bar').stop(true);
+
+    $('#prog_bar').animate({ width: e.offsetX }, 50, 'linear', function(){
+        $('#prog_bar').animate({ width: '100%' }, left_dur, 'linear', function(){
+            $('#prog_bar').css('width', '0');
+        });
     });
+    
 
     $.ajax({
         url: "https://api.spotify.com/v1/me/player/seek?position_ms=" + seek_to_dur,
@@ -77,16 +82,22 @@ $('#for_hover').on('click', function(e){
 
 $('#for_hover').on('mouseenter', function(e){
     $('#full_prog_bar').animate({
+        bottom: '-2px',
         height: '9px',
         borderRadius: '9px' 
-    }, 100, 'linear', function(){});
+    }, 50, 'linear', function(){});
+
+    $('#prog_bar').css('background-color', 'rgba(27,215,96,255)');
 })
 
 $('#for_hover').on('mouseleave', function(e){
     $('#full_prog_bar').animate({
+        bottom: '0px',
         height: '5px',
         borderRadius: '5px'
-    }, 100, 'linear', function(){});
+    }, 50, 'linear', function(){});
+
+    $('#prog_bar').css('background-color', 'white');
 })
 
 
@@ -112,3 +123,52 @@ function set_time(percent){
 
     return (dur_temp);
 }
+
+
+$('#vol_for_hover').on('click', function(e){
+    // console.log(e.offsetX);
+    // console.log($(this).width());
+    // console.log(e.offsetX/$(this).width());
+
+    vol = e.offsetX/$(this).width();
+    vol_perc = parseInt(vol*100);
+    vol = vol_perc/100;
+
+    // $('#prog_bar').stop(true).css({width: e.offsetX});
+    $('#vol_bar').animate({ width: e.offsetX }, 50, 'linear', function(){
+
+    });
+
+    $.ajax({
+        url: "https://api.spotify.com/v1/me/player/volume?volume_percent=" + vol_perc,
+        type: "PUT",
+        headers: {
+            'Authorization': 'Bearer ' + token,
+            'Content-Type': 'application/json'
+        },
+        success: function(response) {
+            // console.log(response);
+            // console.log('chal gaya')
+        }
+    });
+})
+
+$('#vol_for_hover').on('mouseenter', function(e){
+    $('#full_vol_bar').animate({
+        top: '1px',
+        height: '7px',
+        borderRadius: '7px' 
+    }, 10, 'linear', function(){});
+
+    $('#vol_bar').css('background-color', 'rgba(27,215,96,255)');
+})
+
+$('#vol_for_hover').on('mouseleave', function(e){
+    $('#full_vol_bar').animate({
+        top: '2px',
+        height: '5px',
+        borderRadius: '5px'
+    }, 10, 'linear', function(){});
+
+    $('#vol_bar').css('background-color', 'white');
+})

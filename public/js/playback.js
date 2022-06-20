@@ -11,11 +11,13 @@ let footer_visi = false;
 
 let dat;
 
+let vol = 0.5;
+
 window.onSpotifyWebPlaybackSDKReady = () => {
     const player = new Spotify.Player({
         name: 'Web Playback SDK Quick Start Player',
         getOAuthToken: cb => { cb(tokenabcd); },
-        volume: 1
+        volume: vol,
     });
 
 
@@ -50,7 +52,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
     // };
     $('.topicon').on('click', function(){
       let iidx = parseInt($(this).attr('id'));
-      play(uriarr[iidx]);
+      play(uriarr_top[iidx]);
     })
 
     $('#play_btn').on('click', function(){
@@ -184,11 +186,12 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   });
   }
 
+
   function qu(arr, idx){
     if(idx===arr.length){
       return;
     }
-
+    
       $.ajax({
         url: "https://api.spotify.com/v1/me/player/queue?uri=" + arr[idx] + "&device_id=" + dat,
         type: "POST",
@@ -224,6 +227,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   });
   }
 
+
   let prev_name;
   function check(){
     $.ajax({
@@ -237,16 +241,16 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             if(response==undefined || response.item.name==prev_name){
                check();
             }
+
+            
             else{
-              // console.log('prev : '+prev_name+'     curr : '+response.item.name);
-                // console.log(response.item.name);
                 prev_name = response.item.name;
                 reset_timer();
                 start_timer();
                 $('#prog_bar').stop(true).css({width: 0});
                 // $('#prog_bar').animate({ width: '100%' }, 10000, 'linear', function(){
                 $('#prog_bar').animate({ width: '100%' }, response.item.duration_ms, 'linear', function(){
-                $('#prog_bar').css('width', '0');
+                  $('#prog_bar').css('width', '0');
                 });
               }  
         }

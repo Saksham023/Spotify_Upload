@@ -3,7 +3,7 @@ const tok = document.querySelector('#token');
 const token = tok.innerHTML.trim();
 
 
-let uriarr = JSON.parse(localStorage.getItem('uriArray'));
+let uriarr_top = JSON.parse(localStorage.getItem('uriArrayTop'));
 
 
 $.ajax({
@@ -37,8 +37,8 @@ $.ajax({
             arr.push(response.tracks[num].uri);
             num++;
         }
-        localStorage.setItem('uriArray', JSON.stringify(arr));
-        uriarr = JSON.parse(localStorage.getItem('uriArray'));
+        localStorage.setItem('uriArrayTop', JSON.stringify(arr));
+        uriarr_top = JSON.parse(localStorage.getItem('uriArrayTop'));
     }
 });
 
@@ -69,6 +69,131 @@ $.ajax({
             im.setAttribute('src', data[count].images[0].url);
             heading.innerText = data[count].name;
             des.innerText = 'Artist';
+            count++;
+        }
+    }
+});
+
+
+$.ajax({
+    url: 'https://api.spotify.com/v1/browse/featured-playlists?country=IN&locale=hi_IN',
+    headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    },
+    success: function(response) {
+        // console.log(response);
+        let size = response.playlists.items.length;
+        let num = Math.floor(Math.random()*size);
+
+        let data = [];
+
+        for(let i=num; i<(num+6); i++){
+            let n = i%size;
+            data.push(response.playlists.items[n]);
+        }
+
+        // console.log(data);
+        let count = 0;
+        for(let card of $('#featured .card')){
+            const im = document.querySelector(`#featured #card${count+1} .card-img-top`);
+            const heading = document.querySelector(`#featured #card${count+1} h4`);
+            const des = document.querySelector(`#featured #card${count+1} p`);
+            im.setAttribute('src', data[count].images[0].url);
+            heading.innerText = data[count].name;
+            des.innerText = data[count].description;
+            count++;
+        }
+    }
+});
+
+
+let artists_arr = ['6LEG9Ld1aLImEFEVHdWNSB', '4PULA4EFzYTrxYvOVlwpiQ', '6DARBhWbfcS9E4yJzcliqQ', '2P9JaCtpbQSuZOgvtPrUJ8'];
+
+let ran_num = Math.floor(Math.random()*artists_arr.length);
+
+
+$.ajax({
+    url: 'https://api.spotify.com/v1/artists/'+artists_arr[ran_num],
+    headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    },
+    success: function(response) {
+        // console.log(response.name);
+        $('#top_by_heading').text(`More from ${response.name}`);
+        $('#like_heading').text(`More like ${response.name}`);
+    }
+});
+
+
+$.ajax({
+    url: 'https://api.spotify.com/v1/artists/'+  artists_arr[ran_num]  +'/albums',
+    headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    },
+    success: function(response) {
+        // console.log(response);
+        let size = response.items.length;
+        let num = Math.floor(Math.random()*size);
+        let data = [];
+
+        for(let i=num; i<(num+6); i++){
+            let n = i%size;
+            data.push(response.items[n]);
+        }
+
+        // console.log(data);
+        let count = 0;
+        for(let card of $('#top_by .card')){
+            const im = document.querySelector(`#top_by #card${count+1} .card-img-top`);
+            const heading = document.querySelector(`#top_by #card${count+1} h4`);
+            const des = document.querySelector(`#top_by #card${count+1} p`);
+            im.setAttribute('src', data[count].images[0].url);
+            heading.innerText = data[count].name;
+            // des.innerText = data[count].description;
+
+            let tempp_arr = [];
+            for(let obj of data[count].artists){
+              // console.log(obj.name);
+              tempp_arr.push(obj.name);
+            }
+            des.innerText = tempp_arr.join(', ');
+
+            count++;
+        }
+    }
+});
+
+
+$.ajax({
+    url: 'https://api.spotify.com/v1/artists/'+  artists_arr[ran_num]  +'/related-artists',
+    headers: {
+        'Authorization': 'Bearer ' + token,
+        'Content-Type': 'application/json'
+    },
+    success: function(response) {
+        // console.log(response);
+        let size = response.artists.length;
+        let num = Math.floor(Math.random()*size);
+        let data = [];
+
+        for(let i=num; i<(num+6); i++){
+            let n = i%size;
+            data.push(response.artists[n]);
+        }
+
+        console.log(data);
+        let count = 0;
+        for(let card of $('#like .card')){
+            const im = document.querySelector(`#like #card${count+1} .card-img-top`);
+            const heading = document.querySelector(`#like #card${count+1} h4`);
+            const des = document.querySelector(`#like #card${count+1} p`);
+            im.setAttribute('src', data[count].images[0].url);
+            heading.innerText = data[count].name;
+            des.innerText = 'Artist';
+
             count++;
         }
     }
