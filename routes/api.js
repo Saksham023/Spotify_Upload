@@ -5,7 +5,7 @@ var express = require('express'); // Express web server framework
  var querystring = require('querystring');
  var cookieParser = require('cookie-parser');
  const path = require('path');
-
+ const ColorThief = require('colorthief');
 
 var router = express.Router();
 
@@ -14,7 +14,7 @@ var router = express.Router();
  var client_secret = '784b3df20acb4a70a329f370ac2cf69c'; // Your secret
  var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
 
- const token=0;
+//  const token=0;
  
  /**
   * Generates a random string containing numbers and letters
@@ -148,5 +148,92 @@ var router = express.Router();
    });
  });
 
+
+ router.get('/playlist/:uri/:token', function(req, res){
+  const {uri, token} = req.params;
+  // console.log(token);
+  // console.log(uri);
+  const id = uri.split(':')[2];
+  
+  var options = {
+    url: 'https://api.spotify.com/v1/albums/'+id,
+    headers: { 'Authorization': 'Bearer ' + token },
+    json: true
+  };
+  
+  request.get(options, function(error, response, body) {
+    let arr = [];
+    for(let obj of body.artists){
+      arr.push(obj.name);
+    }
+    let str = arr.join(', ');
+    // console.log(body.tracks);
+    
+    let tracks_arr = [];
+    for(let temp_tr of body.tracks.items){
+      let arr1 = [];
+      for(let obj of temp_tr.artists){
+        arr1.push(obj.name);
+      }
+      let str1 = arr1.join(', ');
+      
+      const ob = {
+        track_name: temp_tr.name,
+        track_artist: str,
+        duration: millisToMinutesAndSeconds(temp_tr.duration_ms),
+        track_num: temp_tr.track_number,
+      }
+      tracks_arr.push(ob);
+    }
+
+    ColorThief.getColor(body.images[0].url)
+    .then(color => { 
+      // console.log((color.toString().split(',')));
+      let dat = body.release_date.split('-')[0];
+      const color_rgb = {
+        red: color.toString().split(',')[0],
+        green: color.toString().split(',')[1],
+        blue: color.toString().split(',')[2],
+      }
+
+      const obj = {
+      img: body.images[0].url,
+      name: body.name,
+      artist: str,
+      num: body.total_tracks,
+      year: dat,
+      color: color_rgb,
+      tracks: tracks_arr,
+      }
+  
+    // console.log(obj);
+    // res.send(JSON.stringify(obj));
+    res.render('playlist', {obj});
+    })
+    .catch(err => { console.log(err) })
+
+
+
+    // let dat = body.release_date.split('-')[0];
+    // const obj = {
+    //   img: body.images[0].url,
+    //   name: body.name,
+    //   artist: str,
+    //   num: body.total_tracks,
+    //   year: dat,
+    //   color: color_arr,
+    //   tracks: tracks_arr,
+    // }
+    
+    // // console.log(obj);
+    // res.render('playlist', {obj});
+  })
+})
+
+function millisToMinutesAndSeconds(millis) {
+  var minutes = Math.floor(millis / 60000);
+  var seconds = ((millis % 60000) / 1000).toFixed(0);
+  return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
 
  module.exports = router;

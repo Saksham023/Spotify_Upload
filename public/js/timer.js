@@ -172,3 +172,23 @@ $('#vol_for_hover').on('mouseleave', function(e){
 
     $('#vol_bar').css('background-color', 'white');
 })
+
+
+var d = new Date(); // for now
+// d.getHours() // => 9
+// d.getMinutes() // =>  30
+// d.getSeconds()
+// console.log(d.getHours());
+
+if(d.getHours()>=5 && d.getHours()<=11){
+    $('#greeting').text('Good Morning');
+}
+if(d.getHours()>=12 && d.getHours()<=16){
+    $('#greeting').text('Good Afternoon');
+}
+if(d.getHours()>=17 && d.getHours()<=23){
+    $('#greeting').text('Good Evening');
+}
+if(d.getHours()>=0 && d.getHours()<=4){
+    $('#greeting').text('Good Night');
+}

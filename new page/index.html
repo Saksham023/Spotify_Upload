@@ -5,274 +5,140 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
         href="https://fonts.googleapis.com/css2?family=Pacifico&family=Raleway:wght@300&family=Roboto:wght@500&display=swap"
         rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/color-thief/2.3.0/color-thief.umd.js"></script>
-    <script src="/js/jQuery.js"></script>
-    <script src="//naver.github.io/egjs-jquery-pauseresume/release/latest/dist/pauseresume.js"></script>
-    <title>Document</title>
+        <script src="jQuery.js"></script>
 </head>
 
 <body>
-    <div id="background_red"></div>
-    <div id="background_dark-violet"></div>
-    <div id="background_violet"></div>
-    <div id="background_yellow"></div>
-    <div id="background_gray"></div>
-    <div id="background_orange"></div>
-    <div id="background_green"></div>
-    <div id="background_default"></div>
+
+    <div id="background"></div>
+
     <main>
-
-        <h1 style="display: none;" id="token">
-            <%= access_token %>
-        </h1>
-
-        <h2 id="greeting">Good Evening</h2>
-        <section id="grid">
-            <div class="topdiv" id="0">
-                <img src="" alt="" class="topimg">
-                <h5></h5>
-                <img src="/icon.png" alt="" class="topicon" id="0">
-            </div>
-            <div class="topdiv" id="1">
-                <img src="" alt="" class="topimg">
-                <h5></h5>
-                <img src="/icon.png" alt="" class="topicon" id="1">
-            </div>
-            <div class="topdiv" id="2">
-                <img src="" alt="" class="topimg">
-                <h5></h5>
-                <img src="/icon.png" alt="" class="topicon" id="2">
-            </div>
-            <div class="topdiv" id="3">
-                <img src="" alt="" class="topimg">
-                <h5></h5>
-                <img src="/icon.png" alt="" class="topicon" id="3">
-            </div>
-            <div class="topdiv" id="4">
-                <img src="" alt="" class="topimg">
-                <h5></h5>
-                <img src="/icon.png" alt="" class="topicon" id="4">
-            </div>
-            <div class="topdiv" id="5">
-                <img src="" alt="" class="topimg">
-                <h5></h5>
-                <img src="/icon.png" alt="" class="topicon" id="5">
-            </div>
+        <section id="info">
+                <img src="pic.png" id="topimg">
+                <div id="album_info">
+                        <p id="album">ALBUM</p>
+                        <h1 id="album_head">Moosetape</h1>
+                        <div id="small_det">
+                                <img src="pic.png" id="small_img">
+                                <p id="album_det">Sidhu Moose Wala &middot; 2021 &middot; 32 songs, <span id="muted"> 1 hr 37 min </span></p>
+                        </div>
+                </div>
         </section>
 
-        <h2 style="margin-top: 50px;">Favourite Artists</h2>
-        <section id="artists">
-            <div class="card" id="card1">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+        <section id="list">
+                <div id="list_head">
+                        <div id="nu">#</div>
+                        <div id="tit">TITLE</div>
+                        <div id="plays">PLAYS</div>
+                        <div id="dur">DURATION</div>
                 </div>
-            </div>
-            <div class="card" id="card2">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card3">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card4">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card5">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card6">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-        </section>
 
-        <h2 style="margin-top: 50px;" id="top_by_heading"></h2>
-        <section id="top_by">
-            <div class="card" id="card1">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card2">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card3">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card4">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card5">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card6">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-        </section>
-
-
-        <h2 style="margin-top: 50px;" id="like_heading"></h2>
-        <section id="like">
-            <div class="card" id="card1">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card2">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card3">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card4">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card5">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
+                <div id="list_con">
+                        <div id="nu">1</div>
+                        <div id="tit_list">
+                                <h4>Moosetape (intro)</h4>
+                                <p id="list_singer">Sidhu Moose Wala</p>
+                        </div>
+                        <div id="plays">1,615,788</div>
+                        <div id="dur">1:32</div>
                 </div>
-            </div>
-            <div class="card" id="card6">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-        </section>
-
-        <h2 style="margin-top: 50px;">Featured Playlists</h2>
-        <section id="featured">
-            <div class="card" id="card1">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card2">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card3">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card4">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card5">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
-            <div class="card" id="card6">
-                <img src="" class="card-img-top">
-                <img src="/icon.png" alt="" class="cardicon">
-                <div class="card-body">
-                    <h4 class="cardHeading"></h4>
-                    <p class="card-text"></p>
-                </div>
-            </div>
         </section>
     </main>
 
@@ -324,47 +190,7 @@
         </ul>
     </div>
 
-
-    <footer class="footer">
-        <img src="/Sign 3.jpg" alt="" id="curr_song_img">
-
-        <div class="curr_song_name">
-            <p id="song_name"></p>
-            <p id="singer_name"></p>
-        </div>
-
-        <div class="playcontrols">
-            <img src="/pause.png" alt="" id="pause_btn">
-            <img src="/play.png" alt="" id="play_btn">
-            <img src="/next.png" alt="" id="next_btn">
-            <img src="/prev.png" alt="" id="prev_btn">
-
-            <p id="start_time"><span id="minutes">00</span>:<span id="seconds">00</span></p>
-            <div id="for_hover">
-                <div id="full_prog_bar">
-                    <div id="prog_bar"></div>
-                </div>
-            </div>
-            <p id="end_time">0:00</p>
-        </div>
-
-        <div id="vol_control">
-            <img src="/vol.png" alt="" id="vol_icon">
-
-            <div id="vol_for_hover">
-                <div id="full_vol_bar">
-                    <div id="vol_bar"></div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-
-    <script src="https://sdk.scdn.co/spotify-player.js"></script>
-    <script src="/js/api_request.js"></script>
-    <script src="/js/playback.js"></script>
-    <script src="/js/index.js"></script>
-    <script src="/js/timer.js"></script>
+    <script src="imp.js"></script>
 </body>
 
 </html>

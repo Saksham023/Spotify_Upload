@@ -4,6 +4,7 @@ const token = tok.innerHTML.trim();
 
 
 let uriarr_top = JSON.parse(localStorage.getItem('uriArrayTop'));
+let uriarr_top_by = JSON.parse(localStorage.getItem('uriArrayTopBy'));
 
 
 $.ajax({
@@ -14,6 +15,7 @@ $.ajax({
     },
 
     success: function(response) {
+        // console.log(response);
         let num = 0;
         for(let img of $('.topdiv .topimg')){
             // console.log(img);
@@ -144,6 +146,8 @@ $.ajax({
             data.push(response.items[n]);
         }
 
+        let arr = [];
+
         // console.log(data);
         let count = 0;
         for(let card of $('#top_by .card')){
@@ -152,6 +156,7 @@ $.ajax({
             const des = document.querySelector(`#top_by #card${count+1} p`);
             im.setAttribute('src', data[count].images[0].url);
             heading.innerText = data[count].name;
+            arr.push(data[count].uri);
             // des.innerText = data[count].description;
 
             let tempp_arr = [];
@@ -163,6 +168,9 @@ $.ajax({
 
             count++;
         }
+
+        localStorage.setItem('uriArrayTopBy', JSON.stringify(arr));
+        uriarr_top_by = JSON.parse(localStorage.getItem('uriArrayTopBy'));
     }
 });
 
@@ -184,7 +192,7 @@ $.ajax({
             data.push(response.artists[n]);
         }
 
-        console.log(data);
+        // console.log(data);
         let count = 0;
         for(let card of $('#like .card')){
             const im = document.querySelector(`#like #card${count+1} .card-img-top`);
