@@ -5,6 +5,7 @@ const token = tok.innerHTML.trim();
 
 let uriarr_top = JSON.parse(localStorage.getItem('uriArrayTop'));
 let uriarr_top_by = JSON.parse(localStorage.getItem('uriArrayTopBy'));
+let uriarr_artist = JSON.parse(localStorage.getItem('uriArrayArtist'));
 
 
 $.ajax({
@@ -56,6 +57,7 @@ $.ajax({
         let num = Math.floor(Math.random()*19);
 
         let data = [];
+        let arr = [];
 
         for(let i=num; i<(num+6); i++){
             let n = i%19;
@@ -69,10 +71,16 @@ $.ajax({
             const heading = document.querySelector(`#card${count+1} h4`);
             const des = document.querySelector(`#card${count+1} p`);
             im.setAttribute('src', data[count].images[0].url);
+            arr.push(data[count].uri);
             heading.innerText = data[count].name;
             des.innerText = 'Artist';
             count++;
         }
+
+        // console.log(arr);
+
+        localStorage.setItem('uriArrayArtist', JSON.stringify(arr));
+        uriarr_artist = JSON.parse(localStorage.getItem('uriArrayArtist'));
     }
 });
 

@@ -10,9 +10,5 @@ setTimeout(function(){
     $('#album_info').css('visibility', 'visible');
 }, 5);
 
-let color_code = $('#color_code').text();
-
-$('#background').css('background-image', `linear-gradient(rgba(${color_code}), 50%, #121212)`);
-
-
-console.log(color_code);
+// let color_code = $('#color_code').text();
+// $('#background').css('background-image', `linear-gradient(rgba(${color_code}), 50%, #121212)`);

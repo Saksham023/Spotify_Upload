@@ -207,27 +207,80 @@ var router = express.Router();
       }
   
     // console.log(obj);
-    // res.send(JSON.stringify(obj));
-    res.render('playlist', {obj});
+    res.send(obj);
+    // res.render('playlist', {obj});
     })
     .catch(err => { console.log(err) })
 
-
-
-    // let dat = body.release_date.split('-')[0];
-    // const obj = {
-    //   img: body.images[0].url,
-    //   name: body.name,
-    //   artist: str,
-    //   num: body.total_tracks,
-    //   year: dat,
-    //   color: color_arr,
-    //   tracks: tracks_arr,
-    // }
-    
-    // // console.log(obj);
-    // res.render('playlist', {obj});
   })
+})
+
+
+ router.get('/artist/:uri/:token', function(req, res){
+  const {uri, token} = req.params;
+  // console.log(token);
+  // console.log(uri);
+  const id = uri.split(':')[2];
+
+
+  // https://api.spotify.com/v1/artists/id
+
+  var options1 = {
+    url: 'https://api.spotify.com/v1/artists/'+id,
+    headers: { 'Authorization': 'Bearer ' + token },
+    json: true
+  };
+  request.get(options1, function(error, response, body) {
+    // console.log(body);
+    let str = body.name;
+
+  
+  var options = {
+    url: 'https://api.spotify.com/v1/artists/'+ id + '/top-tracks?market=IN',
+    headers: { 'Authorization': 'Bearer ' + token },
+    json: true
+  };
+  
+  request.get(options, function(error, response, body1) {
+    let tracks_arr = [];
+    for(let temp_tr of body1.tracks){
+      let arr1 = [];
+      for(let obj of temp_tr.artists){
+        // console.log(obj);
+        arr1.push(obj.name);
+      }
+      let str1 = arr1.join(', ');
+      
+      const ob = {
+        track_name: temp_tr.name,
+        track_artist: str1,
+        duration: millisToMinutesAndSeconds(temp_tr.duration_ms),
+      }
+      tracks_arr.push(ob);
+    }
+
+    ColorThief.getColor(body.images[0].url)
+    .then(color => { 
+      const color_rgb = {
+        red: color.toString().split(',')[0],
+        green: color.toString().split(',')[1],
+        blue: color.toString().split(',')[2],
+      }
+
+      const obj = {
+      img: body.images[0].url,
+      name: body.name,
+      color: color_rgb,
+      tracks: tracks_arr,
+      }
+  
+    // console.log(obj);
+    res.send(obj);
+    })
+    .catch(err => { console.log(err) })
+
+  })
+})
 })
 
 function millisToMinutesAndSeconds(millis) {

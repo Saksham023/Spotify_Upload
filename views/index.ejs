@@ -18,15 +18,15 @@
 </head>
 
 <body>
-    <div id="background_red"></div>
-    <div id="background_dark-violet"></div>
-    <div id="background_violet"></div>
-    <div id="background_yellow"></div>
-    <div id="background_gray"></div>
-    <div id="background_orange"></div>
-    <div id="background_green"></div>
-    <div id="background_default"></div>
-    <main>
+    <main id="homepage">
+        <div id="background_red"></div>
+        <div id="background_dark-violet"></div>
+        <div id="background_violet"></div>
+        <div id="background_yellow"></div>
+        <div id="background_gray"></div>
+        <div id="background_orange"></div>
+        <div id="background_green"></div>
+        <div id="background_default"></div>
 
         <h1 style="display: none;" id="token">
             <%= access_token %>
@@ -276,6 +276,36 @@
         </section>
     </main>
 
+
+    <main id="playlist_page">
+        <div id="nav_controls">
+            <img src="/back.png" id="back_btn">
+        </div>
+        <div id="background"></div>
+        <section id="info">
+                <img src="" id="topimg">
+                <div id="album_info">
+                        <p id="album">ALBUM</p>
+                        <h1 id="album_head"></h1>
+                        <div id="small_det">
+                                <p id="album_det"><span id="artist_name"></span> &middot; <span id="year"></span> &middot; <span id="num"></span></p>
+                        </div>
+                </div>
+        </section>
+
+        <section id="list">
+                <div id="list_head">
+                        <div id="nu">#</div>
+                        <div id="tit">TITLE</div>
+                        <div id="dur">DURATION</div>
+                </div>
+
+                <div style="margin-top: 20px;" id="list_cont">
+                </div>
+
+        </section>
+    </main>
+
     <aside>
         <div class="spotify-icons"><img
                 src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png"></div>
@@ -361,10 +391,11 @@
 
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="/js/index.js"></script>
     <script src="/js/api_request.js"></script>
     <script src="/js/playback.js"></script>
-    <script src="/js/index.js"></script>
     <script src="/js/timer.js"></script>
+    <script src="/js/imp.js"></script>
 </body>
 
 </html>

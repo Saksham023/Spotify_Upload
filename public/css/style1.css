@@ -10,11 +10,12 @@ body{
 
 #background{
     /* border: 2px solid white; */
-    margin-left: 216px;
+    /* margin-left: 216px; */
     width: calc(100% - 216px);
     height: 550px;
     /* height: 400px; */
     position: absolute;
+    top: 0px;
     box-sizing: border-box;
     /* background-image: linear-gradient(rgba(192,27,20, 0.7), 50%, #121212); */
     z-index: -1;
@@ -161,6 +162,7 @@ body{
 main{
     /* height: 100vh; */
     margin-left: 216px;
+    /* border: 2px solid white; */
     padding-bottom: 120px;
     width: calc(100% - 216px);
     padding-top: 60px;
