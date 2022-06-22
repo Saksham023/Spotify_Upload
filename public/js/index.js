@@ -211,14 +211,14 @@ $('#top_by .card').on('click', function(){
 
 
 $('#back_btn').on('click', function(){
-    $('#background').css('background-image', ``);
     
-
+    
     $('#playlist_page').animate({ left: '100vw' }, 600, 'linear', function(){
         $('#homepage').css('display', 'block');
         $('#playlist_page').css('display', 'none');
+        $('#background').css('background-image', ``);
         const list_cont = document.querySelector('#list_cont');
-    list_cont.innerHTML = '';
+        list_cont.innerHTML = '';
 
     // document.body.scrollTop = document.documentElement.scrollTop = 0;
     $('#topimg').attr('src', '');
