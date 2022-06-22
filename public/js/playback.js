@@ -148,8 +148,20 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             // console.log(response);
             reset_timer();
             $('#prog_bar').stop(true).css({width: 0});
-            check();
             let idd = (uri.split(':')[2]);
+            $.ajax({
+              url: "https://api.spotify.com/v1/tracks/" + idd,
+              type: "GET",
+              headers: {
+                  'Authorization': 'Bearer ' + token,
+                  'Content-Type': 'application/json'
+              },
+              success: function(response) {
+                  // console.log(response.artists);
+                  // $('#song_name').text(response.name);
+                  check(response.name);
+              }
+            });
             // setTimeout(fu, 3500);
             $('.playcontrols').css('display', 'block');
             $('#play_btn').addClass('play-exit');
@@ -160,7 +172,6 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             $('.footer').addClass('foot_en');
 
             setSongDetails(idd);
-
 
             $.ajax({
               url: 'https://api.spotify.com/v1/recommendations?seed_tracks='+idd,
@@ -231,7 +242,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
 
   let prev_name;
-  function check(){
+  function check(name){
     $.ajax({
         url: "https://api.spotify.com/v1/me/player/currently-playing",
         headers: {
@@ -239,22 +250,21 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             'Content-Type': 'application/json'
         },
         success: function(response) {
-            // console.log(response);
-            if(response==undefined || response.item.name==prev_name){
-               check();
+            console.log(response);
+            if(response==undefined || ((response.item.name==prev_name) && (response.item.name != name))){
+              console.log('abcd');
+              check(name);
             }
-
-            
             else{
-                prev_name = response.item.name;
-                reset_timer();
-                start_timer();
-                $('#prog_bar').stop(true).css({width: 0});
-                // $('#prog_bar').animate({ width: '100%' }, 10000, 'linear', function(){
-                $('#prog_bar').animate({ width: '100%' }, response.item.duration_ms, 'linear', function(){
-                  $('#prog_bar').css('width', '0');
-                });
-              }  
+              prev_name = response.item.name;
+              reset_timer();
+              start_timer();
+              $('#prog_bar').stop(true).css({width: 0});
+              // $('#prog_bar').animate({ width: '100%' }, 10000, 'linear', function(){
+              $('#prog_bar').animate({ width: '100%' }, response.item.duration_ms, 'linear', function(){
+                $('#prog_bar').css('width', '0');
+              });
+            }  
         }
     });
 }

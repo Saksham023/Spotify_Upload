@@ -195,7 +195,7 @@ $('#top_by .card').on('click', function(){
     $('#playlist_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
     $('#homepage').css('display', 'none');
-    // $('#playlist_page').css('display', 'block');
+    $('#playlist_page').css('display', 'block');
     
     // $('#prog_bar').css('width', '0');
 })
@@ -218,6 +218,7 @@ $('#back_btn').on('click', function(){
 
     $('#playlist_page').animate({ left: '100vw' }, 600, 'linear', function(){
         $('#homepage').css('display', 'block');
+        $('#playlist_page').css('display', 'none');
     });
 });
 
@@ -321,5 +322,6 @@ $('#artists .card').on('click', function(){
     $('#playlist_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
     $('#homepage').css('display', 'none');
+    $('#playlist_page').css('display', 'block');
     
 })

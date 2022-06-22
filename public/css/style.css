@@ -1156,6 +1156,7 @@ background: linear-gradient(180deg, rgba(255,252,252,0) 9%, rgba(72,71,71,0.6993
     top: 0px;
     left: 100vw;
     z-index: -2;
+    display: none;
     /* border: 2px solid white; */
     /* background-image: linear-gradient(green, black); */
 }
