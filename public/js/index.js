@@ -212,7 +212,12 @@ $('#top_by .card').on('click', function(){
 
 $('#back_btn').on('click', function(){
     $('#background').css('background-image', ``);
-    const list_cont = document.querySelector('#list_cont');
+    
+
+    $('#playlist_page').animate({ left: '100vw' }, 600, 'linear', function(){
+        $('#homepage').css('display', 'block');
+        $('#playlist_page').css('display', 'none');
+        const list_cont = document.querySelector('#list_cont');
     list_cont.innerHTML = '';
 
     // document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -222,10 +227,6 @@ $('#back_btn').on('click', function(){
     $('#artist_name').text('');
     $('#year').text('');
     $('#num').text('');
-
-    $('#playlist_page').animate({ left: '100vw' }, 600, 'linear', function(){
-        $('#homepage').css('display', 'block');
-        $('#playlist_page').css('display', 'none');
     });
 });
 
