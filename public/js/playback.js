@@ -146,6 +146,8 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         data: `{"uris": ["${uri}"]}`,
         success: function(response) {
             // console.log(response);
+            reset_timer();
+            $('#prog_bar').stop(true).css({width: 0});
             check();
             let idd = (uri.split(':')[2]);
             // setTimeout(fu, 3500);

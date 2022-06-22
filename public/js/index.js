@@ -124,6 +124,7 @@ $('#top_by .card').on('click', function(){
             $('#topimg').attr('src', response.img);
             $('#album_head').text(response.name.split('(')[0]);
             $('#album_det').css('display', 'inline-block');
+            $('#album').text('ALBUM');
             
             $('#artist_name').text(response.artist);
             $('#year').text(response.year);
@@ -164,6 +165,9 @@ $('#top_by .card').on('click', function(){
                 list_con.appendChild(tit_list);
                 list_con.appendChild(dur);
                 
+                nu.addEventListener('click', function(){
+                    play(response.tracks[i].uri);
+                });
                 list_con.addEventListener('mouseenter', function(){
                     list_con.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
                     list_con.style.cursor = "pointer";
@@ -217,6 +221,10 @@ $('#back_btn').on('click', function(){
     });
 });
 
+$('#back_btn').on('mouseenter', function(){
+    $(this).css('cursor', 'pointer');
+});
+
 // console.log($('#artists #card1 .card-img-top').attr('src'));
 // if($('#artists #card1 .card-img-top').attr('src')===''){
 //     $('#artists #card1 .card-img-top').css('width', '0px');
@@ -253,6 +261,7 @@ $('#artists .card').on('click', function(){
             $('#topimg').attr('src', response.img);
             $('#album_head').text(response.name.split('(')[0]);
             $('#album_det').css('display', 'none');
+            $('#album').text('ARTIST');
             
             for(let i=0; i<response.tracks.length; i++){
                 const list_con = document.createElement('div');
@@ -284,6 +293,9 @@ $('#artists .card').on('click', function(){
                 list_con.appendChild(tit_list);
                 list_con.appendChild(dur);
 
+                nu.addEventListener('click', function(){
+                    play(response.tracks[i].uri);
+                });
                 list_con.addEventListener('mouseenter', function(){
                     list_con.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
                     list_con.style.cursor = "pointer";

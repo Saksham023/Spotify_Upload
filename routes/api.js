@@ -179,9 +179,10 @@ var router = express.Router();
       
       const ob = {
         track_name: temp_tr.name,
-        track_artist: str,
+        track_artist: str1,
         duration: millisToMinutesAndSeconds(temp_tr.duration_ms),
         track_num: temp_tr.track_number,
+        uri: temp_tr.uri,
       }
       tracks_arr.push(ob);
     }
@@ -255,6 +256,7 @@ var router = express.Router();
         track_name: temp_tr.name,
         track_artist: str1,
         duration: millisToMinutesAndSeconds(temp_tr.duration_ms),
+        uri: temp_tr.uri,
       }
       tracks_arr.push(ob);
     }
