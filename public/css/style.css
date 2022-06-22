@@ -1058,6 +1058,11 @@ background: linear-gradient(180deg, rgba(255,252,252,0) 9%, rgba(72,71,71,0.6993
     position: absolute; 
 }
 
+#small_play{
+    height: 13px;
+    /* display: none; */
+}
+
 #small_det{
     /* border: 1px solid orange; */
     position: relative;

@@ -165,16 +165,23 @@ $('#top_by .card').on('click', function(){
                 list_con.appendChild(tit_list);
                 list_con.appendChild(dur);
                 
+                const play_btn = document.createElement('img');
+                play_btn.setAttribute('src', '/play1.png');
+                play_btn.setAttribute('id', 'small_play');
+
                 nu.addEventListener('click', function(){
                     play(response.tracks[i].uri);
                 });
                 list_con.addEventListener('mouseenter', function(){
                     list_con.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
                     list_con.style.cursor = "pointer";
-
+                    nu.innerText = '';
+                    nu.appendChild(play_btn);
                 });
                 list_con.addEventListener('mouseleave', function(){
                     list_con.style.backgroundColor = '';
+                    play_btn.remove();
+                    nu.innerText = i+1;
                 });
                 
                 list_cont.appendChild(list_con);
@@ -288,6 +295,9 @@ $('#artists .card').on('click', function(){
                 tit_list.appendChild(list_singer);
                 
                 nu.innerText = i+1;
+                const play_btn = document.createElement('img');
+                play_btn.setAttribute('src', '/play1.png');
+                play_btn.setAttribute('id', 'small_play');
                 dur.innerText = response.tracks[i].duration;
                 
                 list_con.appendChild(nu);
@@ -300,9 +310,13 @@ $('#artists .card').on('click', function(){
                 list_con.addEventListener('mouseenter', function(){
                     list_con.style.backgroundColor = 'rgba(255, 255, 255, 0.08)';
                     list_con.style.cursor = "pointer";
+                    nu.innerText = '';
+                    nu.appendChild(play_btn);
                 });
                 list_con.addEventListener('mouseleave', function(){
                     list_con.style.backgroundColor = '';
+                    play_btn.remove();
+                    nu.innerText = i+1;
                 });
                 
                 list_cont.appendChild(list_con);
