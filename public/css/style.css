@@ -1109,6 +1109,7 @@ background: linear-gradient(180deg, rgba(255,252,252,0) 9%, rgba(72,71,71,0.6993
     display: flex;
     align-items: center;
     font-size: 0.8rem;
+    /* margin-right: 10px; */
     /* border: 2px solid white; */
 }
 #dur{
@@ -1135,6 +1136,9 @@ background: linear-gradient(180deg, rgba(255,252,252,0) 9%, rgba(72,71,71,0.6993
 #list_singer{
     font-size: 0.7rem;
     color: rgb(178, 172, 172);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 #tit_list{
@@ -1145,6 +1149,8 @@ background: linear-gradient(180deg, rgba(255,252,252,0) 9%, rgba(72,71,71,0.6993
     /* align-items: center; */
     justify-content: space-evenly;
     color: white;
+    padding-right: 10px;
+    box-sizing: border-box;
     /* border: 2px solid white; */
 }
 
@@ -1161,7 +1167,7 @@ background: linear-gradient(180deg, rgba(255,252,252,0) 9%, rgba(72,71,71,0.6993
     top: 0px;
     left: 100vw;
     z-index: -2;
-    display: none;
+    /* display: none; */
     /* border: 2px solid white; */
     /* background-image: linear-gradient(green, black); */
 }

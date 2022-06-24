@@ -153,6 +153,7 @@ $('#vol_for_hover').on('click', function(e){
     });
 })
 
+
 $('#vol_for_hover').on('mouseenter', function(e){
     $('#full_vol_bar').animate({
         top: '1px',
@@ -190,5 +191,5 @@ if(d.getHours()>=17 && d.getHours()<=23){
     $('#greeting').text('Good Evening');
 }
 if(d.getHours()>=0 && d.getHours()<=4){
-    $('#greeting').text('Good Night');
+    $('#greeting').text('Good Evening');
 }

@@ -252,7 +252,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
         success: function(response) {
             console.log(response);
             if(response==undefined || ((response.item.name==prev_name) && (response.item.name != name))){
-              console.log('abcd');
+              // console.log('abcd');
               check(name);
             }
             else{
