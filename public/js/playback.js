@@ -82,7 +82,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     $('#next_btn').on('click', function(){
       player.nextTrack().then(() => {
-        console.log('Skipped to next track!');
+        // console.log('Skipped to next track!');
         // fu();
         setTimeout(function(){
           $.ajax({
@@ -93,7 +93,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
                 'Content-Type': 'application/json'
             },
             success: function(response) {
-              check();
+              check(response.item.name);
     
                 // console.log(response);
 
@@ -108,7 +108,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     $('#prev_btn').on('click', function(){
       player.previousTrack().then(() => {
-        console.log('Set to previous track!');
+        // console.log('Set to previous track!');
 
         setTimeout(function(){
           $.ajax({
@@ -118,7 +118,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
                 'Content-Type': 'application/json'
             },
             success: function(response) {
-                check();
+              check(response.item.name);
                 // console.log(response.item.id);
 
                 let idd = response.item.id;
@@ -250,7 +250,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
             'Content-Type': 'application/json'
         },
         success: function(response) {
-            console.log(response);
+            // console.log(response);
             if(response==undefined || ((response.item.name==prev_name) && (response.item.name != name))){
               // console.log('abcd');
               check(name);

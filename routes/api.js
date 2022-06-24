@@ -149,7 +149,7 @@ var router = express.Router();
  });
 
 
- router.get('/playlist/:uri/:token', function(req, res){
+ router.get('/album/:uri/:token', function(req, res){
   const {uri, token} = req.params;
   // console.log(token);
   // console.log(uri);
@@ -285,10 +285,75 @@ var router = express.Router();
 })
 })
 
+
+
+router.get('/playlist/:uri/:token', function(req, res){
+  const {uri, token} = req.params;
+  // console.log(token);
+  // console.log(uri);
+  const id = uri.split(':')[2];
+  
+  var options = {
+    url: 'https://api.spotify.com/v1/playlists/'+id+'?limit=200',
+    headers: { 'Authorization': 'Bearer ' + token },
+    json: true
+  };
+  
+  request.get(options, function(error, response, body) {
+    // console.log(body);
+    
+    let tracks_arr = [];
+    for(let temp_tr of body.tracks.items){
+      // console.log(temp_tr);
+      let arr1 = [];
+      if(temp_tr.track != null){
+        for(let obj of temp_tr.track.artists){
+          arr1.push(obj.name);
+        }
+      
+      let str1 = arr1.join(', ');
+      
+      const ob = {
+        track_name: temp_tr.track.name,
+        track_artist: str1,
+        duration: millisToMinutesAndSeconds(temp_tr.track.duration_ms),
+        // track_num: temp_tr.track_number,
+        uri: temp_tr.track.uri,
+        track_album: temp_tr.track.album.name,
+      }
+      tracks_arr.push(ob);
+    }
+    }
+
+    ColorThief.getColor(body.images[0].url)
+    .then(color => { 
+      const color_rgb = {
+        red: color.toString().split(',')[0],
+        green: color.toString().split(',')[1],
+        blue: color.toString().split(',')[2],
+      }
+
+      const obj = {
+        img: body.images[0].url,
+        name: body.name,
+        des: body.description,
+        // num: body.total_tracks,
+        color: color_rgb,
+        tracks: tracks_arr,
+      }
+  
+    // console.log(obj.tracks[0]);
+    res.send(obj);
+    })
+    .catch(err => { console.log(err) })
+  })
+})
+
+
 function millisToMinutesAndSeconds(millis) {
   var minutes = Math.floor(millis / 60000);
   var seconds = ((millis % 60000) / 1000).toFixed(0);
   return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
 }
 
- module.exports = router;
+module.exports = router;
