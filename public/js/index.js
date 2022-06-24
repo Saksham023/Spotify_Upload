@@ -198,7 +198,7 @@ $('#top_by .card').on('click', function(){
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
-            }, 10);
+            }, 100);
         }
     });
     
@@ -316,7 +316,7 @@ $('#top_by .cardicon').on('click', function(e){
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
-            }, 10);
+            }, 100);
             
             play(response.tracks[0].uri);
         }
@@ -474,7 +474,7 @@ $('#artists .card').on('click', function(){
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
-            }, 10);
+            }, 100);
         }
     });
     
@@ -576,7 +576,7 @@ $('#artists .cardicon').on('click', function(e){
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
-            }, 10);
+            }, 100);
             play(response.tracks[0].uri);
         }
     });
@@ -676,7 +676,7 @@ $('#like .card').on('click', function(){
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
-            }, 10);
+            }, 100);
         }
     });
     
@@ -775,7 +775,7 @@ $('#like .cardicon').on('click', function(e){
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
-            }, 10);
+            }, 100);
 
             play(response.tracks[0].uri);
         }
@@ -889,7 +889,7 @@ $('#featured .card').on('click', function(){
                 let lef = im_wid + 20;
                 $('#album_page #album_info').css('left', lef);
                 $('#album_page #album_info').css('visibility', 'visible');
-            }, 10);
+            }, 100);
             
         }
     });
@@ -1004,7 +1004,7 @@ $('#featured .cardicon').on('click', function(e){
                 let lef = im_wid + 20;
                 $('#album_page #album_info').css('left', lef);
                 $('#album_page #album_info').css('visibility', 'visible');
-            }, 10);
+            }, 100);
             play(response.tracks[0].uri);
             
         }

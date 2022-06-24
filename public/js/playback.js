@@ -23,7 +23,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
 
     // Ready
     player.addListener('ready', (data) => {
-      console.log('Ready with Device ID', data);
+      // console.log('Ready with Device ID', data);
       dat = data.device_id;
     });
 

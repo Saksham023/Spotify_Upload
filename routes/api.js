@@ -6,9 +6,11 @@ var express = require('express'); // Express web server framework
  var cookieParser = require('cookie-parser');
  const path = require('path');
  const ColorThief = require('colorthief');
+const { read } = require('fs');
 
 var router = express.Router();
 
+router.use(express.urlencoded({extended:true}));
 
  var client_id = '9ddc7e09db6d4babb7d05f4d573fbf9b'; // Your client id
  var client_secret = '784b3df20acb4a70a329f370ac2cf69c'; // Your secret
@@ -348,6 +350,99 @@ router.get('/playlist/:uri/:token', function(req, res){
     .catch(err => { console.log(err) })
   })
 })
+
+
+// --------------------------Request for search------------
+router.get('/search/:token/:value', function(req, res){
+  const {token,value} = req.params;
+  //const {search} = req.body;
+  // console.log(search);
+
+  var options = {
+    url: `https://api.spotify.com/v1/search?&q=${value}&type=track,album,artist`,
+    headers: { 'Authorization': 'Bearer ' + token },
+    json: true
+  };
+  
+  request.get(options, function(error, response, body) {
+     
+   // res.send(body);
+    console.log(body);
+    // adding search tracks
+    let tracks_arr = [];
+    for(let temp_tr of body.tracks.items){
+       //console.log(temp_tr);
+      let arr1 = [];
+      if(temp_tr.artists != null){
+        for(let obj of temp_tr.artists){
+          arr1.push(obj.name);
+        }
+      
+      let str1 = arr1.join(', ');
+      
+      const ob = {
+        track_name: temp_tr.name,
+        track_artist: str1,
+        duration: millisToMinutesAndSeconds(temp_tr.duration_ms),
+        // track_num: temp_tr.track_number,
+        uri: temp_tr.uri,
+        track_album: temp_tr.album.name,
+      }
+      // console.log('hey');
+      tracks_arr.push(ob);
+    }
+    }
+    //res.send(tracks_arr);
+    // adding search artists
+    let artist_ar = [];
+    for(let temp_ar of body.artists.items){
+      // console.log(temp_tr);
+     
+      const ob = {
+        artist_name: temp_ar.name,
+        artist_image: temp_ar.images[0],
+        uri: temp_ar.uri,
+        
+      }
+      artist_ar.push(ob);
+    }
+
+    let album_ar = [];
+    for(let temp_ar of body.albums.items){
+      // console.log(temp_tr);
+      let arr1 = [];
+      if(temp_ar.artists != null){
+        for(let obj of temp_ar.artists){
+          arr1.push(obj.name);
+        }
+      
+      let str1 = arr1.join(', ');
+      const ob = {
+
+        album_name: temp_ar.name,
+        albums_artists : str1,
+        album_image: temp_ar.images[0],
+        uri: temp_ar.uri,
+        
+      }
+      album_ar.push(ob);
+    }
+  }
+    
+  
+    const obj = {
+      tracks : tracks_arr,
+      artist : artist_ar,
+      album : album_ar,
+    }
+
+    res.send(obj);
+  })
+  
+})
+
+
+//----------------end-----------------------
 
 
 function millisToMinutesAndSeconds(millis) {

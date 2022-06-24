@@ -781,15 +781,17 @@ aside{
     width : 216px;
     box-sizing: border-box;
     padding: 0px 16px;
-    height : 100%;
+    height : 310px;
     position : fixed;
     top:0px;
+    /* bottom: 0px; */
     background-color: black;
     color: white;
+    /* overflow-y: scroll; */
 }
 
 #ul_bot{
-    border-bottom: 0.05px solid rgba(84, 84, 84, 0.5);
+    border-bottom: 0.5px solid rgba(84, 84, 84, 0.8);
 }
 
 aside ul{
@@ -837,6 +839,43 @@ aside .sep-2 {
 }
 aside .aside-list-items:hover{
     color: white;
+    cursor: pointer;
+}
+
+#user_playlist{
+    position: fixed;
+    margin-top: 10px;
+    overflow-y: scroll;
+}
+
+#side{
+    position: fixed;
+    width : 216px;
+    box-sizing: border-box;
+    top: 310px;
+    bottom: 0px;
+    overflow-y: scroll;
+    background-color: black;
+    /* background-color: white; */
+    color:  rgb(194, 185, 185);
+    padding: 10px 15px;
+    padding-bottom: 90px;
+}
+
+#side ul{
+    list-style: none;
+}
+
+#side li{
+    margin: 14px 0px;
+    font-size: 0.9em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+#side li:hover{
+    color: white;
+    cursor: pointer;
 }
 
 
@@ -844,7 +883,9 @@ aside .aside-list-items:hover{
     aside{
         display: none;
     }
-
+    #side{
+        display: none;
+    }
 }
 
 /* _____________________________________________________________________________aside css ends___________________________________________________________________________ */
@@ -1368,4 +1409,31 @@ aside .aside-list-items:hover{
         height: 230px;
         left: 0px;
     }
+}
+
+
+
+
+
+.searchbar{
+
+    height: 25px;
+    width : 30%;
+    position : absolute;
+    left : 20%;
+    top : 17px;
+    border : 2px solid white;
+    border-radius: 15px;
+    background-color: transparent;
+    padding: 0px;
+
+}
+.searchbar #search{
+    width: 100%;
+    height :25px;
+    border-radius: 15px;
+    margin: 0px;
+    position: relative;
+    top : -2px;
+    left : -2px;
 }
