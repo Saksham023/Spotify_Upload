@@ -4,6 +4,12 @@
     font-family: roboto;
 }
 
+
+html {
+    scroll-behavior: smooth;
+}
+
+
 body{
     background-color: #121212;
     /* rgba(20,22,22,255) */
@@ -1333,8 +1339,13 @@ aside .aside-list-items:hover{
         /* left: 0px; */
         /* margin-bottom: 1000px; */
     }
-
-
+    #lib_page{
+        margin: 0px auto;
+        width: 100%;
+        padding-bottom: 80px;
+        /* left: 0px; */
+        /* margin-bottom: 1000px; */
+    }
     .topdiv{
         height: 50px;
         /* opacity: 0.2; */
@@ -1413,27 +1424,435 @@ aside .aside-list-items:hover{
 
 
 
-
+/* --------------------Search Bars----------------------- */
 
 .searchbar{
-
-    height: 25px;
-    width : 30%;
+    height: 35px;
+    width : 88%;
     position : absolute;
-    left : 20%;
-    top : 17px;
-    border : 2px solid white;
-    border-radius: 15px;
-    background-color: transparent;
-    padding: 0px;
+    left : 32px;
+    top : -6px;
 
 }
 .searchbar #search{
     width: 100%;
-    height :25px;
-    border-radius: 15px;
-    margin: 0px;
+    height: 100%;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    padding-left: 8px;
+    box-sizing: border-box;
+    background-color: #000;
+    opacity: 0;
+    /* box-shadow: 2px 2px 2px 2px rgb(84, 78, 78);; */
+}
+
+.searchbar #search:hover{
+    cursor: pointer;
+}
+
+
+.searchbar .def::placeholder{
+    font-size: 1.05em;
+    color: rgb(194, 185, 185);
+}
+
+
+.searchbar .sear::placeholder{
+    color: rgb(84, 78, 78);
+}
+
+
+
+#searchPage{
+        display:none;
+}
+
+#searchPage #artistss{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-x: scroll;
+
+}
+#artistss::-webkit-scrollbar {    
+    display: none;
+}
+#searchPage #Albums{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-x: scroll;
+
+}
+#Albums::-webkit-scrollbar {    
+    display: none;
+}
+#searchPage #playlists{
+    margin-top: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    overflow-x: scroll;
+
+}
+#playlists::-webkit-scrollbar {    
+    display: none;
+}
+
+.acard{
+    background-color: #181818;
+    /* background-color: aqua; */
+    color: white;
+    height: 266px;
+    width: 200px;
+    border-radius: 7px;
     position: relative;
-    top : -2px;
-    left : -2px;
+    /* box-sizing: border-box; */
+}
+
+@keyframes anicard {
+    0%{
+        background-color: #181818;
+    }
+    100%{
+        background-color: #282828;
+    }
+}
+
+@keyframes anicard1 {
+    0%{
+        background-color: #282828;
+    }
+    100%{
+        background-color: #181818;
+    }
+}
+
+.acard:not(:hover){
+    animation-name: anicard1;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0ms; 
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+.acard:hover{
+    animation-name: anicard;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0ms; 
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+}
+
+.acard:hover{
+    cursor: pointer;
+}
+
+.acard-img-top{
+    /* padding: 15px; */
+    /* margin: 10px auto; */
+    margin: 10px 18px;
+    height: 62%;
+    width: 164px;
+    border-radius: 7px;
+    box-shadow: 5px 5px 30px 0.4px rgb(22, 19, 19);
+}
+
+#artistss a.card-img-top{
+    border-radius: 50%;
+}
+
+.acardicon{
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    height: 18%;
+    opacity: 0;
+    transition: all 0.2s ease-out;
+    border-radius: 50%;
+}
+
+.acard:hover .acardicon{
+    top: 45%;
+    opacity: 100;
+    box-shadow: 0px 6px 20px 0.02px rgb(41, 37, 37);
+    /* box-shadow: 3px 0px 30px 0.05px rgb(41, 37, 37); */
+}
+
+.acard-body{
+    margin: 2px 12px;
+    height: 25%;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.acardHeading{
+    font-size: 16px;
+    padding: 3px;
+}
+
+.acard-text{
+    font-size: 13px;
+    padding: 3px;
+    color: rgb(130, 126, 126);
+    height: 43%;
+    overflow: hidden;
+}
+
+@media screen and (max-width: 1500px){
+    #acard6{
+        display: none;
+    }
+   
+}
+
+@media screen and (max-width: 1290px){
+    #acard5{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1085px){
+    #acard4{
+        display: none;
+    }
+}
+
+@media screen and (max-width: 850px){
+    #acard4, #acard5, #acard6{
+        display: block;
+    }
+    .acard{
+        margin: 2px 10px;
+    }
+}
+
+
+
+
+
+/* ---------------------------------------------------------------------------------------- */
+
+#lib_grid{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    column-gap: 20px;
+    row-gap: 25px;
+    margin-top: 30px;
+  }
+  
+  #liked_card{
+    grid-column-start: 1;
+    grid-column-end: 3;
+    visibility: hidden;
+    background-size: 300% 300%;
+    background-image: linear-gradient(
+        -45deg, 
+        rgba(59,173,227,1) 0%, 
+        rgba(87,111,230,1) 25%, 
+        rgba(152,68,183,1) 51%, 
+        rgba(255,53,127,1) 100%
+    );  
+    animation: AnimateBG 20s ease infinite;
+  }
+
+
+  @keyframes AnimateBG { 
+    0%{background-position:0% 50%}
+    50%{background-position:100% 50%}
+    100%{background-position:0% 50%}
+  }
+
+
+  .lib_card{
+    background-color: #181818;
+    /* background-color: aqua; */
+    color: white;
+    height: 266px;
+    width: 100%;
+    max-width: 220px;
+    border-radius: 7px;
+    position: relative;
+    margin: 0px auto;
+    /* box-sizing: border-box; */
+  }
+  
+  #liked_list{
+    margin: 68px 10px;
+    height: 69px;
+  }
+  
+  #liked_list #para{
+    height: 100%;
+    overflow: hidden;
+    font-size: 0.9rem;
+  }
+  
+  @keyframes anicard {
+    0%{
+        background-color: #181818;
+    }
+    100%{
+        background-color: #282828;
+    }
+  }
+  
+  @keyframes anicard1 {
+    0%{
+        background-color: #282828;
+    }
+    100%{
+        background-color: #181818;
+    }
+  }
+  
+  .lib_card:not(:hover){
+    animation-name: anicard1;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0ms; 
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+  }
+  
+  .lib_card:hover{
+    animation-name: anicard;
+    animation-duration: 0.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0ms; 
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+  }
+  
+  .lib_card:hover{
+    cursor: pointer;
+  }
+  
+  .lib_card_img_top{
+    /* padding: 15px; */
+    /* margin: 10px auto; */
+    margin: 10px 5%;
+    height: 62%;
+    width: 90%;
+    border-radius: 7px;
+    box-shadow: 5px 5px 30px 0.4px rgb(22, 19, 19);
+  }
+  
+  .lib_cardicon{
+    position: absolute;
+    top: 50%;
+    right: 12%;
+    height: 18%;
+    opacity: 0;
+    transition: all 0.2s ease-out;
+    border-radius: 50%;
+    z-index: 10;
+  }
+  
+  .liked_cardicon{
+    position: absolute;
+    bottom: 1%;
+    right: 5%;
+    height: 18%;
+    opacity: 0;
+    transition: all 0.2s ease-out;
+    border-radius: 50%;
+    z-index: 10;
+  }
+  
+  .lib_card:hover .lib_cardicon{
+    top: 45%;
+    opacity: 100;
+    box-shadow: 0px 6px 20px 0.02px rgb(41, 37, 37);
+    /* box-shadow: 3px 0px 30px 0.05px rgb(41, 37, 37); */
+  }
+  
+  .lib_card:hover .liked_cardicon{
+    bottom: 7%;
+    opacity: 100;
+    box-shadow: 0px 6px 20px 0.02px rgb(41, 37, 37);
+    /* box-shadow: 3px 0px 30px 0.05px rgb(41, 37, 37); */
+  }
+  
+  .lib_card_body{
+    margin: 5px 8px;
+    height: 25%;
+  }
+  .liked_card_body{
+    position: absolute;
+    height: 35%;
+    bottom: 0px;
+    left: 10px;
+  }
+  
+  .lib_cardHeading{
+    font-size: 16px;
+    padding: 3px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .liked_cardHeading{
+    font-size: 2.3rem;
+    padding: 3px;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .lib_card_text{
+    font-size: 13px;
+    padding: 3px;
+    color: rgb(130, 126, 126);
+    height: 43%;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .liked_card_text{
+    font-size: 0.9rem;
+    padding: 3px;
+    color: white;
+    height: 43%;
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  #lib_page{
+    margin-left: 216px;
+    padding-bottom: 120px;
+    background-color: #121212;
+    width: calc(100% - 216px);
+    padding-left: 3vw;
+    padding-right: 1vw;
+    padding-top: 80px;
+    position: absolute;
+    top: 0px;
+    left: 100vw;
+    z-index: -2;
+    /* border: 2px solid black; */
+    box-sizing: border-box;
+    /* background-image: linear-gradient(green, black); */
+  }
+
+
+  @media screen and (max-width: 700px){
+    #lib_page{
+        margin: 0px auto;
+        width: 100%;
+        padding-bottom: 80px;
+        /* left: 0px; */
+        /* margin-bottom: 1000px; */
+    }
 }

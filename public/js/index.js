@@ -1,10 +1,45 @@
+class Stack {
+    #items = []
+    push = (element) => this.#items.push(element)
+    pop = () => this.#items.pop()
+    isempty = () => this.#items.length === 0
+    empty = () => (this.#items.length = 0)
+    size = () => this.#items.length
+  }
 
 let colors = ['red', 'dark-violet', 'violet', 'yellow', 'orange', 'gray', 'green'];
 colors.sort( ()=>Math.random()-0.5 );
 let idx = -1;
 
+const prev_page = new Stack();
+
 let grad = $(`#background_${colors[0]}`).css('background-image');
 $(`#background_default`).css('background-image', grad);
+
+$(".searchbar #search").focus(function(){
+    $(this).css('background-color', 'white');
+    $(this).css('cursor', 'text');
+    $(this).css('box-shadow', '0px 2px 20px 0.2px rgb(84, 78, 78)');
+    $(this).animate({ opacity: '1' }, 100, 'linear', function(){
+    });
+    $('#ser_span').animate({ opacity: '0' }, 100, 'linear', function(){
+    });
+    $('.searchbar #search').addClass('sear');
+});
+
+$(".searchbar #search").focusout(function(){
+    // console.log($(this).val());
+    let inp = $(this).val();
+    if(inp.length===0){
+        $(this).css('cursor', 'pointer');
+        $(this).css('box-shadow', '');
+        $(this).animate({ opacity: '0' }, 100, 'linear', function(){
+        });
+        $('#ser_span').animate({ opacity: '1' }, 100, 'linear', function(){
+        });
+        $('.searchbar #search').removeClass('sear');
+    }
+});
 
 $('.topdiv').on('mouseenter', function(){
     $(this).addClass('top-ani');
@@ -95,6 +130,8 @@ $('#prev_btn').on('mouseleave', function(){
     $(this).css('box-shadow', '');
 })
 
+let myInterval=0;
+
 $('#top_by .card').on('click', function(){
     let idx = $(this).attr('id').charAt(4) - 1;
     document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -113,7 +150,7 @@ $('#top_by .card').on('click', function(){
             'Content-Type': 'application/json'
         },
         success: function(response) {
-            console.log(response);
+            // console.log(response);
             const list_cont = document.querySelector('#playlist_page #list_cont');
             list_cont.innerHTML = '';
             
@@ -194,18 +231,38 @@ $('#top_by .card').on('click', function(){
             
             setTimeout(function(){
                 im_wid = $('#playlist_page #topimg').width();
+                // console.log('xyz');
                 // console.log(im_wid);
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
             }, 100);
+
+            myInterval = setInterval(function(){
+                im_wid = $('#playlist_page #topimg').width();
+                // console.log('abcd');
+                // console.log(im_wid);
+                let lef = im_wid + 20;
+                $('#playlist_page #album_info').css('left', lef);
+                $('#playlist_page #album_info').css('visibility', 'visible');
+            }, 200);
         }
     });
     
     $('#playlist_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
+    if($('#homepage').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#homepage'));
+    }
+    if($('#album_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#album_page'));
+    }
+    if($('#lib_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#lib_page'));
+    }
     $('#homepage').css('display', 'none');
     $('#album_page').css('display', 'none');
+    $('#lib_page').css('display', 'none');
     $('#playlist_page').css('display', 'block');
     
     // $('#prog_bar').css('width', '0');
@@ -231,7 +288,7 @@ $('#top_by .cardicon').on('click', function(e){
             'Content-Type': 'application/json'
         },
         success: function(response) {
-            console.log(response);
+            // console.log(response);
             const list_cont = document.querySelector('#playlist_page #list_cont');
             list_cont.innerHTML = '';
             
@@ -312,11 +369,21 @@ $('#top_by .cardicon').on('click', function(e){
             
             setTimeout(function(){
                 im_wid = $('#playlist_page #topimg').width();
+                // console.log('xyz');
                 // console.log(im_wid);
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
             }, 100);
+
+            myInterval = setInterval(function(){
+                im_wid = $('#playlist_page #topimg').width();
+                // console.log('abcd');
+                // console.log(im_wid);
+                let lef = im_wid + 20;
+                $('#playlist_page #album_info').css('left', lef);
+                $('#playlist_page #album_info').css('visibility', 'visible');
+            }, 200);
             
             play(response.tracks[0].uri);
         }
@@ -324,8 +391,18 @@ $('#top_by .cardicon').on('click', function(e){
     
     $('#playlist_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
+    if($('#homepage').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#homepage'));
+    }
+    if($('#album_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#album_page'));
+    }
+    if($('#lib_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#lib_page'));
+    }
     $('#homepage').css('display', 'none');
     $('#album_page').css('display', 'none');
+    $('#lib_page').css('display', 'none');
     $('#playlist_page').css('display', 'block');
     
     // $('#prog_bar').css('width', '0');
@@ -338,7 +415,8 @@ $('#playlist_page #back_btn').on('click', function(){
     
     
     $('#playlist_page').animate({ left: '100vw' }, 600, 'linear', function(){
-        $('#homepage').css('display', 'block');
+        // $('#homepage').css('display', 'block');
+        prev_page.pop().style.display = 'block';
         $('#playlist_page').css('display', 'none');
         $('#playlist_page #background').css('background-image', ``);
         const list_cont = document.querySelector('#playlist_page #list_cont');
@@ -352,6 +430,7 @@ $('#playlist_page #back_btn').on('click', function(){
     $('#playlist_page #artist_name').text('');
     $('#playlist_page #year').text('');
     $('#playlist_page #num').text('');
+    clearInterval(myInterval);
     });
 });
 
@@ -362,7 +441,8 @@ $('#playlist_page #back_btn').on('mouseenter', function(){
 $('#album_page #back_btn').on('click', function(){
     
     $('#album_page').animate({ left: '100vw' }, 600, 'linear', function(){
-        $('#homepage').css('display', 'block');
+        // $('#homepage').css('display', 'block');
+        prev_page.pop().style.display = 'block';
         $('#album_page').css('display', 'none');
         $('#album_page #background').css('background-image', ``);
         const list_cont = document.querySelector('#album_page #list_cont');
@@ -374,12 +454,66 @@ $('#album_page #back_btn').on('click', function(){
     $('#album_page #album').text('');
 
     $('#album_page #playlist_des').text('');
+    clearInterval(myInterval);
     });
 });
 
 $('#album_page #back_btn').on('mouseenter', function(){
     $(this).css('cursor', 'pointer');
 });
+
+$('#home_btn').on('click', function(){
+    $('#album_page').animate({ left: '100vw' }, 600, 'linear', function(){
+        $('#homepage').css('display', 'block');
+        $('#album_page').css('display', 'none');
+        $('#album_page #background').css('background-image', ``);
+        const list_cont = document.querySelector('#album_page #list_cont');
+        list_cont.innerHTML = '';
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
+    $('#album_page #topimg').attr('src', '');
+    $('#album_page #album_head').text('');
+    $('#album_page #album').text('');
+
+    $('#album_page #playlist_des').text('');
+    clearInterval(myInterval);
+    });
+
+
+    $('#playlist_page').animate({ left: '100vw' }, 600, 'linear', function(){
+        $('#homepage').css('display', 'block');
+        $('#playlist_page').css('display', 'none');
+        $('#playlist_page #background').css('background-image', ``);
+        const list_cont = document.querySelector('#playlist_page #list_cont');
+        list_cont.innerHTML = '';
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
+    $('#playlist_page #topimg').attr('src', '');
+    $('#playlist_page #album_head').text('');
+    $('#playlist_page #album').text('');
+    
+    $('#playlist_page #artist_name').text('');
+    $('#playlist_page #year').text('');
+    $('#playlist_page #num').text('');
+    clearInterval(myInterval);
+    });
+
+    $('#lib_page').animate({ left: '100vw' }, 600, 'linear', function(){
+        $('#homepage').css('display', 'block');
+        $('#lib_page').css('display', 'none');
+        const lib_grid = document.querySelector('#lib_grid');
+        lib_grid.innerHTML = '';
+  
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
+    });
+
+    if($('#homepage').css('display') === 'block'){
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
+
+});
+
 
 // console.log($('#artists #card1 .card-img-top').attr('src'));
 // if($('#artists #card1 .card-img-top').attr('src')===''){
@@ -470,18 +604,38 @@ $('#artists .card').on('click', function(){
             
             setTimeout(function(){
                 im_wid = $('#playlist_page #topimg').width();
+                // console.log('xyz');
                 // console.log(im_wid);
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
             }, 100);
+
+            myInterval = setInterval(function(){
+                im_wid = $('#playlist_page #topimg').width();
+                // console.log('abcd');
+                // console.log(im_wid);
+                let lef = im_wid + 20;
+                $('#playlist_page #album_info').css('left', lef);
+                $('#playlist_page #album_info').css('visibility', 'visible');
+            }, 200);
         }
     });
     
     $('#playlist_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
+    if($('#homepage').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#homepage'));
+    }
+    if($('#album_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#album_page'));
+    }
+    if($('#lib_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#lib_page'));
+    }
     $('#homepage').css('display', 'none');
     $('#album_page').css('display', 'none');
+    $('#lib_page').css('display', 'none');
     $('#playlist_page').css('display', 'block');
     
 })
@@ -572,19 +726,39 @@ $('#artists .cardicon').on('click', function(e){
             
             setTimeout(function(){
                 im_wid = $('#playlist_page #topimg').width();
+                // console.log('xyz');
                 // console.log(im_wid);
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
             }, 100);
+
+            myInterval = setInterval(function(){
+                im_wid = $('#playlist_page #topimg').width();
+                // console.log('abcd');
+                // console.log(im_wid);
+                let lef = im_wid + 20;
+                $('#playlist_page #album_info').css('left', lef);
+                $('#playlist_page #album_info').css('visibility', 'visible');
+            }, 200);
             play(response.tracks[0].uri);
         }
     });
     
     $('#playlist_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
+    if($('#homepage').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#homepage'));
+    }
+    if($('#album_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#album_page'));
+    }
+    if($('#lib_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#lib_page'));
+    }
     $('#homepage').css('display', 'none');
     $('#album_page').css('display', 'none');
+    $('#lib_page').css('display', 'none');
     $('#playlist_page').css('display', 'block');
     
 })
@@ -672,18 +846,38 @@ $('#like .card').on('click', function(){
             
             setTimeout(function(){
                 im_wid = $('#playlist_page #topimg').width();
+                // console.log('xyz');
                 // console.log(im_wid);
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
             }, 100);
+
+            myInterval = setInterval(function(){
+                im_wid = $('#playlist_page #topimg').width();
+                // console.log('abcd');
+                // console.log(im_wid);
+                let lef = im_wid + 20;
+                $('#playlist_page #album_info').css('left', lef);
+                $('#playlist_page #album_info').css('visibility', 'visible');
+            }, 200);
         }
     });
     
     $('#playlist_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
+    if($('#homepage').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#homepage'));
+    }
+    if($('#album_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#album_page'));
+    }
+    if($('#lib_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#lib_page'));
+    }
     $('#homepage').css('display', 'none');
     $('#album_page').css('display', 'none');
+    $('#lib_page').css('display', 'none');
     $('#playlist_page').css('display', 'block');
     
 })
@@ -771,11 +965,21 @@ $('#like .cardicon').on('click', function(e){
             
             setTimeout(function(){
                 im_wid = $('#playlist_page #topimg').width();
+                // console.log('xyz');
                 // console.log(im_wid);
                 let lef = im_wid + 20;
                 $('#playlist_page #album_info').css('left', lef);
                 $('#playlist_page #album_info').css('visibility', 'visible');
             }, 100);
+
+            myInterval = setInterval(function(){
+                im_wid = $('#playlist_page #topimg').width();
+                // console.log('abcd');
+                // console.log(im_wid);
+                let lef = im_wid + 20;
+                $('#playlist_page #album_info').css('left', lef);
+                $('#playlist_page #album_info').css('visibility', 'visible');
+            }, 200);
 
             play(response.tracks[0].uri);
         }
@@ -783,8 +987,18 @@ $('#like .cardicon').on('click', function(e){
     
     $('#playlist_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
+    if($('#homepage').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#homepage'));
+    }
+    if($('#album_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#album_page'));
+    }
+    if($('#lib_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#lib_page'));
+    }
     $('#homepage').css('display', 'none');
     $('#album_page').css('display', 'none');
+    $('#lib_page').css('display', 'none');
     $('#playlist_page').css('display', 'block');
     
 })
@@ -802,7 +1016,7 @@ $('#featured .card').on('click', function(){
             'Content-Type': 'application/json'
         },
         success: function(response) {
-            console.log(response);
+            // console.log(response);
             const list_cont = document.querySelector('#album_page #list_cont');
             list_cont.innerHTML = '';
             
@@ -885,19 +1099,39 @@ $('#featured .card').on('click', function(){
             
             setTimeout(function(){
                 im_wid = $('#album_page #topimg').width();
+                // console.log('xyz');
                 // console.log(im_wid);
                 let lef = im_wid + 20;
                 $('#album_page #album_info').css('left', lef);
                 $('#album_page #album_info').css('visibility', 'visible');
             }, 100);
+
+            myInterval = setInterval(function(){
+                im_wid = $('#album_page #topimg').width();
+                // console.log('abcd');
+                // console.log(im_wid);
+                let lef = im_wid + 20;
+                $('#album_page #album_info').css('left', lef);
+                $('#album_page #album_info').css('visibility', 'visible');
+            }, 200);
             
         }
     });
     
     $('#album_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
+    if($('#homepage').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#homepage'));
+    }
+    if($('#playlist_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#playlist_page'));
+    }
+    if($('#lib_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#lib_page'));
+    }
     $('#homepage').css('display', 'none');
     $('#playlist_page').css('display', 'none');
+    $('#lib_page').css('display', 'none');
     $('#album_page').css('display', 'block');
     
     // $('#prog_bar').css('width', '0');
@@ -917,7 +1151,7 @@ $('#featured .cardicon').on('click', function(e){
             'Content-Type': 'application/json'
         },
         success: function(response) {
-            console.log(response);
+            // console.log(response);
             const list_cont = document.querySelector('#album_page #list_cont');
             list_cont.innerHTML = '';
             
@@ -1000,20 +1234,40 @@ $('#featured .cardicon').on('click', function(e){
             
             setTimeout(function(){
                 im_wid = $('#album_page #topimg').width();
+                // console.log('xyz');
                 // console.log(im_wid);
                 let lef = im_wid + 20;
                 $('#album_page #album_info').css('left', lef);
                 $('#album_page #album_info').css('visibility', 'visible');
             }, 100);
-            play(response.tracks[0].uri);
+
+            myInterval = setInterval(function(){
+                im_wid = $('#album_page #topimg').width();
+                // console.log('abcd');
+                // console.log(im_wid);
+                let lef = im_wid + 20;
+                $('#album_page #album_info').css('left', lef);
+                $('#album_page #album_info').css('visibility', 'visible');
+            }, 200);
             
+            play(response.tracks[0].uri);
         }
     });
     
     $('#album_page').animate({ left: '0px' }, 600, 'linear', function(){
     });
+    if($('#homepage').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#homepage'));
+    }
+    if($('#playlist_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#playlist_page'));
+    }
+    if($('#lib_page').css('display',) === 'block'){
+        prev_page.push(document.querySelector('#lib_page'));
+    }
     $('#homepage').css('display', 'none');
     $('#playlist_page').css('display', 'none');
+    $('#lib_page').css('display', 'none');
     $('#album_page').css('display', 'block');
     
     // $('#prog_bar').css('width', '0');

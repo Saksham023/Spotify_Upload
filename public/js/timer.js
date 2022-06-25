@@ -193,3 +193,10 @@ if(d.getHours()>=17 && d.getHours()<=23){
 if(d.getHours()>=0 && d.getHours()<=4){
     $('#greeting').text('Good Evening');
 }
+
+
+
+
+setInterval(function(){
+    console.log(prev_page);
+}, 5000)
