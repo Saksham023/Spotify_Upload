@@ -1644,7 +1644,7 @@ aside .aside-list-items:hover{
 
 #lib_grid{
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(175px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
     column-gap: 20px;
     row-gap: 25px;
     margin-top: 30px;
@@ -1679,7 +1679,7 @@ aside .aside-list-items:hover{
     color: white;
     height: 266px;
     width: 100%;
-    max-width: 220px;
+    max-width: 210px;
     border-radius: 7px;
     position: relative;
     margin: 0px auto;
