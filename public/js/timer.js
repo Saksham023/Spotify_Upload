@@ -197,6 +197,6 @@ if(d.getHours()>=0 && d.getHours()<=4){
 
 
 
-setInterval(function(){
-    console.log(prev_page);
-}, 5000)
+// setInterval(function(){
+//     console.log(prev_page);
+// }, 5000)

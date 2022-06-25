@@ -33,8 +33,7 @@ $("#lib_open_btn").on("click", function () {
 
       const para = document.createElement("p");
       para.setAttribute("id", "para");
-      liked_list.appendChild(para);
-
+      
       $.ajax({
         url: `/liked_list/${token}`,
         headers: {
@@ -56,7 +55,8 @@ $("#lib_open_btn").on("click", function () {
           }
         },
       });
-
+      
+      // liked_list.appendChild(para);
       const liked_card_body = document.createElement("div");
       liked_card_body.setAttribute("class", "liked_card_body");
 

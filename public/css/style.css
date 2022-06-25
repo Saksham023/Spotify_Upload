@@ -787,10 +787,11 @@ aside{
     width : 216px;
     box-sizing: border-box;
     padding: 0px 16px;
-    height : 310px;
+    height : 275px;
     position : fixed;
     top:0px;
     /* bottom: 0px; */
+    /* background-color: white; */
     background-color: black;
     color: white;
     /* overflow-y: scroll; */
@@ -858,7 +859,7 @@ aside .aside-list-items:hover{
     position: fixed;
     width : 216px;
     box-sizing: border-box;
-    top: 310px;
+    top: 270px;
     bottom: 0px;
     overflow-y: scroll;
     background-color: black;
