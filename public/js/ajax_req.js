@@ -479,6 +479,11 @@ function search_print(val) {
       console.log("response recieved");
       console.log(response);
 
+      seach_uri_tracks = [];
+      seach_uri_album = [];
+      seach_uri_playlist = [];
+      seach_uri_artist = [];
+
       //innitially clean all childs
       $("#search_page #artistss").empty();
       $("#search_page #Albums").empty();
@@ -544,6 +549,9 @@ function search_print(val) {
         toprestext = `Song`;
 
         $("#search-topbar .top-res-icon").on("click", () => {
+          console.log('done');
+          console.log(response.tracks[0].uri);
+          console.log(response.tracks[0].track_name);
           play(response.tracks[0].uri);
         });
       }
@@ -553,11 +561,6 @@ function search_print(val) {
       topresimg.css("width", "80px");
       topimgh4.text(`${topreshead}`);
       topimgp.text(toprestext);
-
-      seach_uri_tracks = [];
-      seach_uri_album = [];
-      seach_uri_playlist = [];
-      seach_uri_artist = [];
 
       // for tracks
 
@@ -622,6 +625,8 @@ function search_print(val) {
         seach_uri_tracks.push(trk.uri);
         i++;
       }
+
+
 
       //for artists
       i = 1;

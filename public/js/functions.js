@@ -148,6 +148,6 @@ function load_page(uri){
   }
 }
 
-setInterval(function(){
-  console.log(searched);
-}, 3000);
+// setInterval(function(){
+//   console.log(searched);
+// }, 3000);
