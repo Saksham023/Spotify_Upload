@@ -469,7 +469,7 @@ router.get('/lib/:token', function(req, res){
     
     let playlist_arr = [];
     for(let temp_play of body.items){
-      // console.log(temp_tr); 
+      console.log(temp_play); 
       const ob = {
         name: temp_play.name,
         uri: temp_play.uri,
@@ -491,14 +491,6 @@ router.get('/lib/:token', function(req, res){
 
 
 
-
-
-
-
-
-
-
-
 // --------------------------Request for search------------
 router.get('/search/:token/:value', function(req, res){
   const {token,value} = req.params;
@@ -506,14 +498,14 @@ router.get('/search/:token/:value', function(req, res){
   // console.log(search);
 
   var options = {
-    url: `https://api.spotify.com/v1/search?&q=${value}&type=track,album,artist`,
+    url: `https://api.spotify.com/v1/search?&q=${value}&type=track,album,artist,playlist`,
     headers: { 'Authorization': 'Bearer ' + token },
     json: true
   };
   
   request.get(options, function(error, response, body) {
      
-   // res.send(body);
+    //res.send(body);
     console.log(body);
     // adding search tracks
     let tracks_arr = [];
@@ -533,6 +525,7 @@ router.get('/search/:token/:value', function(req, res){
         duration: millisToMinutesAndSeconds(temp_tr.duration_ms),
         // track_num: temp_tr.track_number,
         uri: temp_tr.uri,
+        track_image : temp_tr.album.images[0],
         track_album: temp_tr.album.name,
       }
       // console.log('hey');
@@ -575,12 +568,26 @@ router.get('/search/:token/:value', function(req, res){
       album_ar.push(ob);
     }
   }
-    
+  let playlist_ar = [];
+  for(let temp_ar of body.playlists.items){
+    // console.log(temp_tr);
+   
+    const ob = {
+
+      playlist_name: temp_ar.name,
+      playlist_desc : temp_ar.description,
+      playlist_image: temp_ar.images[0],
+      uri: temp_ar.uri,
+      
+    }
+    playlist_ar.push(ob);
+  }
   
     const obj = {
       tracks : tracks_arr,
       artist : artist_ar,
       album : album_ar,
+      playlist : playlist_ar,
     }
 
     res.send(obj);

@@ -19,76 +19,6 @@
 </head>
 
 <body>
-    <!-----------------------------------SearchBar starts--------------------->
-    <!-- <div class="searchbar"> 
-        <input type = "text" placeholder="Search" name="search" id="search">  
-        <button>Search</button>
-    </div> -->
-<div id="searchPage">
-    <h2 style="margin-top: 50px;">Searched Artists</h2>
-    
-   
-    <div id ="artistss">
-         <!--
-        <div class="acard" id="acard1">
-            <img src="" class="acard-img-top">
-            <img src="/icon.png" alt="" height="10px" width="10px" class="acardicon" id="acardicon1">
-            <div class="acard-body">
-                <h4 class="acardHeading"></h4>
-                <p class="acard-text"></p>
-            </div>
-        </div>
-        -->
-    </div>
-    <h2 style="margin-top: 50px;">Searched Albums</h2>
-    <div id = "Albums">
-         <!--
-        <div class="acard" id="acard1">
-            <img src="" class="acard-img-top">
-            <img src="/icon.png" alt="" height="10px" width="10px" class="acardicon" id="acardicon1">
-            <div class="acard-body">
-                <h4 class="acardHeading"></h4>
-                <p class="acard-text"></p>
-            </div>
-        </div>
-        -->
-
-    </div>
-    <h2 style="margin-top: 50px;">Searched PlayList</h2>
-    <div id="playlists">
-    <!--
-        <div class="acard" id="acard1">
-            <img src="" class="acard-img-top">
-            <img src="/icon.png" alt="" height="10px" width="10px" class="acardicon" id="acardicon1">
-            <div class="acard-body">
-                <h4 class="acardHeading"></h4>
-                <p class="acard-text"></p>
-            </div>
-        </div>
-        -->
-
-    </div>
-    <h2 style="margin-top: 50px;">Searched Tracks</h2>
-    <div id = "tracks">
-        <div id="list">
-            <div id="list_head">
-                    <div id="nu">#</div>
-                    <div id="tit">TITLE</div>
-                    <div id="alb">ALBUM</div>
-                    <div id="dur">DURATION</div>
-            </div>
-
-          <!-- <div style="margin-top: 20px;" id="list_cont">
-            
-            </div>--> 
-
-        </div>
-    </div>
-    
-
-</div>
-
-<!-----------------------------------SearchBar ends---------------------->
 
 
     <main id="homepage">
@@ -410,11 +340,39 @@
             </div>
         </section>
     </main>
+    
+    <main id="liked_page" style="display: none;">
+        <div id="nav_controls">
+            <img src="/back.png" id="back_btn">
+        </div>
+        <div id="background"></div>
+        <section id="info">
+            <img src="" id="topimg">
+            <div id="album_info">
+                <p id="album"></p>
+                <h1 id="album_head"></h1>
+                <div id="small_det">
+                    <p id="playlist_des"></p>
+                </div>
+            </div>
+        </section>
+
+        <section id="list">
+            <div id="list_head">
+                <div id="nu">#</div>
+                <div id="tit1">TITLE</div>
+                <div id="alb">ALBUM</div>
+                <div id="dur">DURATION</div>
+            </div>
+
+            <div style="margin-top: 20px;" id="list_cont">
+            </div>
+        </section>
+    </main>
 
 
 
 
-    <!-- <main id="lib_page"> -->
     <main id="lib_page" style="display: none;">
 
         <div id="nav_controls">
@@ -443,24 +401,75 @@
     </main>
 
 
+    <main id="search_page" style="display: none;">
+
+        <div id="nav_controls" style="display:block;opacity:100;">
+            <img src="/back.png" id="back_btn">
+        </div>
+
+        <div id="search-topbar">
+            <div id="span1">
+                <h2>Top result</h2>
+                <div id="top_result">
+                    <img src="" class="top-res-img">
+                    <img src="/icon.png" alt="" class="top-res-icon" id="top-res-icon">
+                    <div class="top-res-body">
+                        <h4 class="top-res-Heading"></h4>
+                        <h5 class="top-res-singers"></h5>
+                        <p class="top-res-text"></p>
+                    </div>
+                </div>
+            </div>
+            <div id="span2">
+                <h2>Songs</h2>
+                <div id="search-tracks">
+
+
+                </div>
+            </div>
+        </div>
+
+
+        <h2 class="search-headings" style="margin-top: 50px; margin-left:40px;">Searched Artists</h2>
+        <div id="artistss">
+
+        </div>
+
+        <h2 class="search-headings" style="margin-top: 50px; margin-left:40px;">Searched Albums</h2>
+        <div id="Albums">
+
+
+        </div>
+
+        <h2 class="search-headings" style="margin-top: 50px; margin-left:40px;">Searched PlayList</h2>
+        <div id="playlists">
+
+        </div>
+
+    </main>
+
+
 
     <aside>
         <div class="spotify-icons"><img
                 src="https://storage.googleapis.com/pr-newsroom-wp/1/2018/11/Spotify_Logo_RGB_White.png"></div>
         <ul>
             <li class="aside-list-items" id="home_btn"><img src="/home.png" alt="home"><span>Home</span></li>
-            <li class="aside-list-items" style="position: relative;"><img src="/search.png" alt="home" height=7% width="15%"><span id="ser_span">Search</span>
-                <div class="searchbar"> 
-                    <input type = "text" placeholder="Search" name="search" id="search" class="def">  
+            <li class="aside-list-items" style="position: relative;"><img src="/search.png" alt="home" height=7%
+                    width="15%"><span id="ser_span">Search</span>
+                <div class="searchbar">
+                    <input type="text" placeholder="Search" name="search" id="search" class="def">
                     <!-- <button>Search</button> -->
                 </div>
             </li>
-            <li class="aside-list-items" id="lib_open_btn"><img src="/lib.png" alt="home" height=7% width="15%"><span> Your Library</span></li>
+            <li class="aside-list-items" id="lib_open_btn"><img src="/lib.png" alt="home" height=7% width="15%"><span>
+                    Your Library</span></li>
         </ul>
         <ul style="margin-top: 35px;" id="ul_bot">
             <!-- <li class="aside-list-items"><img src="/create.png" alt="home" height=7% width="15%"><span>Create
                     Playlist</span></li> -->
-            <li class="aside-list-items" id="like_btn"><img src="/liked.png" alt="home" height=7% width="15%"><span>Liked Songs</span>
+            <li class="aside-list-items" id="like_btn"><img src="/liked.png" alt="home" height=7%
+                    width="15%"><span>Liked Songs</span>
             </li>
         </ul>
     </aside>
@@ -508,6 +517,9 @@
 
 
     <script src="https://sdk.scdn.co/spotify-player.js"></script>
+    <script src="/js/variables.js"></script>
+    <script src="/js/functions.js"></script>
+    <script src="/js/ajax_req.js"></script>
     <script src="/js/index.js"></script>
     <script src="/js/api_request.js"></script>
     <script src="/js/playback.js"></script>
