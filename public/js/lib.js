@@ -183,7 +183,7 @@ $("#lib_page #back_btn").on("click", function () {
       liked_page_print(false);
     }
     else if(pre.str === 'search'){
-      let get_search = searched.pop();
+      let get_search = searched.peek();
       search_print(get_search);
     }
 

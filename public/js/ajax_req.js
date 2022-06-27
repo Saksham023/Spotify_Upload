@@ -345,7 +345,6 @@ function playlist_print(uri, is_btn) {
   });
 }
 
-
 function liked_page_print(is_btn) {
   $.ajax({
     url: `/liked/${token}`,
@@ -468,8 +467,7 @@ function liked_page_print(is_btn) {
   });
 }
 
-
-function search_print(val){
+function search_print(val) {
   $.ajax({
     url: `/search/${token}/${val}`,
     headers: {
@@ -514,22 +512,12 @@ function search_print(val){
         //console.log('inside icon');
         $("#search-topbar .top-res-icon").css("transform", "scale(1)");
       });
-      console.log(
-        response.tracks[0].track_name.toUpperCase() == val.toUpperCase()
-      );
-      if (response.tracks[0].track_name.toUpperCase() == val.toUpperCase()) {
-        topimgsrc = response.tracks[0].track_image.url;
-        topreshead = response.tracks[0].track_name;
-        topresart = response.tracks[0].track_artist.split(",");
-        let artist = topresart[0] + "," + topresart[1];
-        $("#search-topbar .top-res-singers").text(`${topresart}`);
-        topimgp.css("width", "40px");
-        toprestext = `Song`;
+      // console.log(response.tracks[0].track_name.toUpperCase() == val.toUpperCase());
 
-        $("#search-topbar .top-res-icon").on("click", () => {
-          play(response.tracks[0].uri);
-        });
-      } else {
+      if (
+        val.toUpperCase() === response.artist[0].artist_name.toUpperCase() &&
+        val.toUpperCase() !== response.tracks[0].track_name.toUpperCase()
+      ) {
         topimgsrc = response.artist[0].artist_image.url;
         topreshead = response.artist[0].artist_name;
         toprestext = "ARTIST";
@@ -546,13 +534,30 @@ function search_print(val){
 
           show_playlist_page(response.artist[0].uri, true, "artist");
         });
+      } else {
+        topimgsrc = response.tracks[0].track_image.url;
+        topreshead = response.tracks[0].track_name;
+        topresart = response.tracks[0].track_artist.split(",");
+        let artist = topresart[0] + "," + topresart[1];
+        $("#search-topbar .top-res-singers").text(`${topresart}`);
+        topimgp.css("width", "40px");
+        toprestext = `Song`;
+
+        $("#search-topbar .top-res-icon").on("click", () => {
+          play(response.tracks[0].uri);
+        });
       }
 
       topresimg.attr("src", `${topimgsrc}`);
-      topresimg.css('height', '80px');
-      topresimg.css('width', '80px');
+      topresimg.css("height", "80px");
+      topresimg.css("width", "80px");
       topimgh4.text(`${topreshead}`);
       topimgp.text(toprestext);
+
+      seach_uri_tracks = [];
+      seach_uri_album = [];
+      seach_uri_playlist = [];
+      seach_uri_artist = [];
 
       // for tracks
 
@@ -636,12 +641,12 @@ function search_print(val){
           icon.setAttribute("src", "/icon.png");
           icon.setAttribute("class", "acardicon");
           icon.setAttribute("id", `acardicon${i}`);
-          icon.addEventListener('mouseenter', function(){
-            icon.style.transform = 'scale(1.08)';
-          })
-          icon.addEventListener('mouseleave', function(){
-            icon.style.transform = 'scale(1)';
-          })
+          icon.addEventListener("mouseenter", function () {
+            icon.style.transform = "scale(1.08)";
+          });
+          icon.addEventListener("mouseleave", function () {
+            icon.style.transform = "scale(1)";
+          });
 
           //  let articon = document.createElement('img');
           // articon.setAttribute('url',`${iconimg}`);//might have some prob;
@@ -692,12 +697,12 @@ function search_print(val){
           icon.setAttribute("src", "/icon.png");
           icon.setAttribute("class", "acardicon");
           icon.setAttribute("id", `acardicon${i}`);
-          icon.addEventListener('mouseenter', function(){
-            icon.style.transform = 'scale(1.08)';
-          })
-          icon.addEventListener('mouseleave', function(){
-            icon.style.transform = 'scale(1)';
-          })
+          icon.addEventListener("mouseenter", function () {
+            icon.style.transform = "scale(1.08)";
+          });
+          icon.addEventListener("mouseleave", function () {
+            icon.style.transform = "scale(1)";
+          });
           //  let articon = document.createElement('img');
           // articon.setAttribute('url',`${iconimg}`);//might have some prob;
           // articon.setAttribute('class','acardicon');
@@ -748,12 +753,12 @@ function search_print(val){
           icon.setAttribute("src", "/icon.png");
           icon.setAttribute("class", "acardicon");
           icon.setAttribute("id", `acardicon${i}`);
-          icon.addEventListener('mouseenter', function(){
-            icon.style.transform = 'scale(1.08)';
-          })
-          icon.addEventListener('mouseleave', function(){
-            icon.style.transform = 'scale(1)';
-          })
+          icon.addEventListener("mouseenter", function () {
+            icon.style.transform = "scale(1.08)";
+          });
+          icon.addEventListener("mouseleave", function () {
+            icon.style.transform = "scale(1)";
+          });
           //  let articon = document.createElement('img');
           // articon.setAttribute('url',`${iconimg}`);//might have some prob;
           // articon.setAttribute('class','acardicon');
@@ -837,7 +842,6 @@ function search_print(val){
 
         show_playlist_page(seach_uri_album[idx], true, "album");
       });
-
     },
   });
 }

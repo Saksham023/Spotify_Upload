@@ -148,7 +148,7 @@ $("#playlist_page #back_btn").on("click", function () {
     } else if (pre.str === "like") {
       liked_page_print(false);
     } else if (pre.str === "search") {
-      let get_search = searched.pop();
+      let get_search = searched.peek();
       search_print(get_search);
     }
     $("#playlist_page").css("display", "none");
@@ -189,7 +189,7 @@ $("#album_page #back_btn").on("click", function () {
       } else if (pre.str === "like") {
         liked_page_print(false);
       } else if (pre.str === "search") {
-        let get_search = searched.pop();
+        let get_search = searched.peek();
         search_print(get_search);
       }
       // prev_page.style.left = '0vw';

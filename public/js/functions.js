@@ -149,5 +149,5 @@ function load_page(uri){
 }
 
 setInterval(function(){
-  console.log(page_uri);
+  console.log(searched);
 }, 3000);
