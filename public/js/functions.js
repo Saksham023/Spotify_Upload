@@ -1,16 +1,4 @@
 function show_playlist_page(uri, is_btn, str) {
-  $("#playlist_page #background").css("background-image", ``);
-  const list_cont = document.querySelector("#playlist_page #list_cont");
-  list_cont.innerHTML = "";
-
-  // document.body.scrollTop = document.documentElement.scrollTop = 0;
-  $("#playlist_page #topimg").attr("src", "");
-  $("#playlist_page #album_head").text("");
-  $("#playlist_page #album").text("");
-
-  $("#playlist_page #artist_name").text("");
-  $("#playlist_page #year").text("");
-  $("#playlist_page #num").text("");
 
   if (str === "album") {
     album_print(uri, is_btn);
@@ -55,13 +43,6 @@ function show_playlist_page(uri, is_btn, str) {
 }
 
 function show_album_page(uri, is_btn) {
-  $("#album_page #background").css("background-image", ``);
-  const list_cont = document.querySelector("#album_page #list_cont");
-  list_cont.innerHTML = "";
-  $("#album_page #topimg").attr("src", "");
-  $("#album_page #album_head").text("");
-  $("#album_page #album").text("");
-  $("#album_page #playlist_des").text("");
 
 
   playlist_print(uri, is_btn);
@@ -135,7 +116,7 @@ function show_liked_page(is_btn) {
 
 
 function load_page(uri){
-  console.log(uri);
+  // console.log(uri);
   let kind = uri.split(':')[1];
   if(kind === 'playlist'){
     playlist_print(uri, false);

@@ -366,8 +366,8 @@ router.get('/liked/:token', function(req, res){
   };
   
   request.get(options, function(error, response, body) {
-    console.log(body.items[0].track.name);
-    console.log(body.items[0].track.artists[0].name);
+    // console.log(body.items[0].track.name);
+    // console.log(body.items[0].track.artists[0].name);
     
     let tracks_arr = [];
     for(let temp_tr of body.items){
@@ -426,8 +426,8 @@ router.get('/liked_list/:token', function(req, res){
   };
   
   request.get(options, function(error, response, body) {
-    console.log(body.items[0].track.name);
-    console.log(body.items[0].track.artists[0].name);
+    // console.log(body.items[0].track.name);
+    // console.log(body.items[0].track.artists[0].name);
 
     let arr = [];
     for(let obj of body.items){
@@ -469,7 +469,7 @@ router.get('/lib/:token', function(req, res){
     
     let playlist_arr = [];
     for(let temp_play of body.items){
-      console.log(temp_play); 
+      // console.log(temp_play); 
       const ob = {
         name: temp_play.name,
         uri: temp_play.uri,
@@ -506,7 +506,7 @@ router.get('/search/:token/:value', function(req, res){
   request.get(options, function(error, response, body) {
      
     //res.send(body);
-    console.log(body);
+    // console.log(body);
     // adding search tracks
     let tracks_arr = [];
     for(let temp_tr of body.tracks.items){

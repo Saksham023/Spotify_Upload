@@ -6,7 +6,7 @@ $("#lib_open_btn").on("click", function () {
       "Content-Type": "application/json",
     },
     success: function (response) {
-      console.log(response);
+      // console.log(response);
       const lib_grid = document.querySelector("#lib_grid");
       lib_grid.innerHTML = "";
       document.body.scrollTop = document.documentElement.scrollTop = 0;
@@ -41,7 +41,7 @@ $("#lib_open_btn").on("click", function () {
           "Content-Type": "application/json",
         },
         success: function (response) {
-          console.log(response);
+          // console.log(response);
           for (let i = 0; i < response.arr.length; i++) {
             const para_active = document.createElement("span");
             para_active.innerText = response.arr[i].artist + " ";

@@ -24,14 +24,14 @@ $(".searchbar #search").focus(function () {
 
 $(".searchbar #search").focusout(function () {
   // console.log($(this).val());
-//   let inp = $(this).val();
-//   if (inp.length === 0) {
-    $(this).css("cursor", "pointer");
-    $(this).css("box-shadow", "");
-    $(this).animate({ opacity: "0" }, 100, "linear", function () {});
-    $("#ser_span").animate({ opacity: "1" }, 100, "linear", function () {});
-    $(".searchbar #search").removeClass("sear");
-//   }
+  //   let inp = $(this).val();
+  //   if (inp.length === 0) {
+  $(this).css("cursor", "pointer");
+  $(this).css("box-shadow", "");
+  $(this).animate({ opacity: "0" }, 100, "linear", function () {});
+  $("#ser_span").animate({ opacity: "1" }, 100, "linear", function () {});
+  $(".searchbar #search").removeClass("sear");
+  //   }
 });
 
 $(".topdiv").on("mouseenter", function () {
@@ -121,7 +121,7 @@ let myInterval = 0;
 $("#top_by .card").on("click", function () {
   let idx = $(this).attr("id").charAt(4) - 1;
   document.body.scrollTop = document.documentElement.scrollTop = 0;
-  console.log("function called");
+  // console.log("function called");
 
   show_playlist_page(uriarr_top_by[idx], false, "album");
 });
@@ -177,6 +177,16 @@ $("#album_page #back_btn").on("click", function () {
   let pre = prev_page.pop();
   pre.page.style.left = "0px";
   if (pre.str === "album") {
+    $("#album_page #background").css("background-image", ``);
+    const list_cont = document.querySelector("#album_page #list_cont");
+    list_cont.innerHTML = "";
+
+    // document.body.scrollTop = document.documentElement.scrollTop = 0;
+    $("#album_page #topimg").attr("src", "");
+    $("#album_page #album_head").text("");
+    $("#album_page #album").text("");
+    $("#album_page #playlist_des").text("");
+    clearInterval(myInterval);
     let get_uri = page_uri.peek();
     load_page(get_uri);
   } else {
@@ -278,6 +288,7 @@ $("#home_btn").on("click", function () {
   prev_page.empty();
   searched.empty();
   page_uri.empty();
+  $(".searchbar input").val("");
 
   if ($("#homepage").css("display") === "block") {
     document.body.scrollTop = document.documentElement.scrollTop = 0;

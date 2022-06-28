@@ -57,7 +57,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
   $("#play_btn").on("click", function () {
     if ($(this).attr("class").includes("play-exit")) {
       player.togglePlay().then(() => {
-        console.log("Toggled playback!");
+        // console.log("Toggled playback!");
       });
       $("#prog_bar").pause();
       stop_timer();
@@ -67,7 +67,7 @@ window.onSpotifyWebPlaybackSDKReady = () => {
       $("#play_btn").addClass("play-enter");
     } else {
       player.togglePlay().then(() => {
-        console.log("Toggled playback!");
+        // console.log("Toggled playback!");
       });
       $("#prog_bar").resume();
       start_timer();
@@ -153,7 +153,7 @@ function play(uri) {
           "Content-Type": "application/json",
         },
         success: function (response) {
-          console.log(response.name);
+          // console.log(response.name);
           // $('#song_name').text(response.name);
           check(response.name);
         },
