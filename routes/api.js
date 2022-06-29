@@ -14,10 +14,10 @@ router.use(express.urlencoded({extended:true}));
 
  var client_id = '9ddc7e09db6d4babb7d05f4d573fbf9b'; // Your client id
  var client_secret = '784b3df20acb4a70a329f370ac2cf69c'; // Your secret
- var redirect_uri = 'http://localhost:8888/callback'; // Your redirect uri
+ var redirect_uri = 'https://spotify-avail.herokuapp.com/callback'; // Your redirect uri
 
 //  const token=0;
- 
+
  /**
   * Generates a random string containing numbers and letters
   * @param  {number} length The length of the string
